@@ -28,7 +28,7 @@ foreach($ta->result() as $a)
 <div class="card">
 <div class="card-header"><h3><?php echo $judulhalaman;?></h3></div>
 <div class="card-body">
-<p><a href="<?php echo base_url().'guruard/unduhkodenilai/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-download"></span>   <b>Unduh Kode Nilai dari ARD</b></a></p>';?>
+<p><a href="<?php echo base_url().'guruard/unduhkodenilai/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-download"></span>   <b>Unduh Kode Nilai dari ARD</b></a> <a href="'.base_url().'guruard/kirimnilaiakhir/'.$id_mapel.'" class="btn btn-success"><span class="fa fa-upload"></span>   <b>Kirim Nilai Akhir ke ARD</b></a></p>';?>
 <form class="form-horizontal" role="form">
 <div class="form-group row"><div class="col-sm-5"><label class="control-label">Tahun Pelajaran</label></div><div class="col-sm-7"><p class="form-control-static"><?php echo $thnajaran;?></div></div>
 <div class="form-group row"><div class="col-sm-5"><label class="control-label">Semester</label></div><div class="col-sm-7"><p class="form-control-static"><?php echo $semester;?></div></div>
