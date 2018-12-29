@@ -99,9 +99,9 @@ Kode Mapel ARD <?php echo $subjects_value;?><br />
 	<table class="table table-striped table-hover table-bordered"><thead>
 	<tr align="center"><td><strong>Nama</strong></td>
 	<?php
-	echo '<td><strong>RPH</strong></td><td><strong>PAS</strong></td><td><strong>Nilai Pengetahuan</strong></td><td><strong>Predikat</strong></td><td><strong>Praktik</strong></td><td><strong>Portofolio</strong></td><td><strong>Proyek</strong></td><td><strong>Nilai Keterampilan</strong></td><td><strong>Predikat</strong></td></tr></thead>';
+	echo '<td>KKM</td><td><strong>RPH</strong></td><td><strong>PAS</strong></td><td><strong>Nilai Pengetahuan</strong></td><td><strong>Predikat</strong></td><td><strong>Praktik</strong></td><td><strong>Portofolio</strong></td><td><strong>Proyek</strong></td><td><strong>Nilai Keterampilan</strong></td><td><strong>Predikat</strong></td></tr></thead>';
 	echo '<tr><td>'.$namasiswa.'</td>';
-			echo '<td>'.$value_daily.'</td><td>'.$value_final.'</td><td>'.$value_knowledge_total.'</td><td>'.$value_knowledge_predicate.'</td><td>'.$value_practice.'</td><td>'.$value_portfolio.'</td><td><strong>'.$value_project.'</strong></td><td>'.$value_skill_total.'</td><td>'.$value_skill_predicate.'</td></tr>';
+			echo '<td>'.$kkm.'</td><td>'.$value_daily.'</td><td>'.$value_final.'</td><td>'.$value_knowledge_total.'</td><td>'.$value_knowledge_predicate.'</td><td>'.$value_practice.'</td><td>'.$value_portfolio.'</td><td><strong>'.$value_project.'</strong></td><td>'.$value_skill_total.'</td><td>'.$value_skill_predicate.'</td></tr>';
 			echo '<tr><td colspan="10">'.$value_knowledge_description.'</td></tr>';
 			echo '<tr><td colspan="10">'.$value_skill_description.'</td></tr>';
 	echo '</table></div>';
