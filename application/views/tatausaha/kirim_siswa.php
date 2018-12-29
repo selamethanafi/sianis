@@ -50,11 +50,11 @@ $daftar_mapel = $this->db->query("select * from `m_walikelas` where `thnajaran`=
 	<input type="hidden" class="form-control" name="school_class_id" value="<?php echo $kode_rombel;?>">
 	<?php
 */
-	if(substr($t->kdkls,0,4)== 'XII-')
+	if(substr($t->kls,0,4)== 'XII-')
 	{
 		echo '<input type="hidden" name="student_from_class" value="12" >';
 	}
-	elseif(substr($t->kdkls,0,3)== 'XI-')
+	elseif(substr($t->kls,0,3)== 'XI-')
 	{
 		echo '<input type="hidden" name="student_from_class" value="11" >';
 	}
