@@ -92,7 +92,7 @@ foreach($ta->result() as $a)
 $this->db->query("INSERT INTO `m_referensi` (`opsi`, `nilai`) VALUES ('chat_id_admin_skp', '256939625')");
 */
 /*
-$this->db->query("INSERT INTO `m_referensi` (`opsi`, `nilai`) VALUES ('token_bot', '283284316:AAHih5sAYBxWcQ5FN05QZ2ZDP1jUY-JGYXc')");
+$this->db->query("INSERT INTO `m_referensi` (`opsi`, `nilai`) VALUES ('token_bot', '')");
 $this->db->query("ALTER TABLE `ppk_pns` CHANGE `pkg_tambahan` `pkg_tambahan` VARCHAR(5) NULL");
 $this->db->query("ALTER TABLE `skp_skor_guru` CHANGE `kodeguru` `nip` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL");
 $this->db->query("ALTER TABLE `skp_realisasi` CHANGE `kodeguru` `nip` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL");
