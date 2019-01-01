@@ -1,3 +1,20 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+//============================================================+
+// Nama Berkas 		: sieka_login.php
+// Lokasi      		: application/views/sieka/
+// Terakhir diperbarui	: Sel 01 Jan 2019 11:02:24 WIB 
+// Author      		: Selamet Hanafi
+//
+// (c) Copyright:
+//               Selamet Hanafi
+//               sianis.web.id
+//               selamethanafi@yahoo.co.id
+//
+// License:
+//    Copyright (C) 2009-2014 Selamet Hanafi
+//    Informasi detil ada di LISENSI.TXT 
+//============================================================+
+?>
 <?php
 		$tb = $this->db->query("select * from `sieka_user` where `nip`='$nip'");
 		foreach($tb->result() as $b)
