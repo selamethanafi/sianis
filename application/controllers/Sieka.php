@@ -52,7 +52,7 @@ class Sieka extends CI_Controller
 			redirect('guru/buatdataumum');	
 		}
 		$data['judulhalaman'] = 'Jembatan Sieka';
-		$data['base_url'] = 'https';//substr(base_url(),0,5);
+		$data['base_url'] = substr(base_url(),0,5);
 		$this->load->view('guru/bg_atas',$data);
 		$this->load->view('sieka/sieka_index',$data);
 		$this->load->view('shared/bawah');
@@ -94,6 +94,15 @@ class Sieka extends CI_Controller
 		$data['nip']=$this->sieka->get_NIP($data["nim"]);
 		$this->load->view('sieka/sieka_login',$data);
 	}
+	function login2()
+	{
+		$data = array();
+		$data["nim"]=$this->session->userdata('username');
+		$data['judulhalaman'] = 'Login Sieka';
+		$data['nip']=$this->sieka->get_NIP($data["nim"]);
+		$this->load->view('sieka/sieka_login',$data);
+	}
+
 	function tahunan()
 	{
 		$data["nim"]=$this->session->userdata('username');
