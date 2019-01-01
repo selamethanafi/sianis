@@ -94,7 +94,7 @@ if(count($query->result())>0)
 		<div class="form-group row row"><label class="col-sm-3 control-label">Bahasa Sehari-hari</label><div class="col-sm-9"><?php echo $t->bhs;?></div></div>
 		<h4>TEMPAT TINGGAL</h4>
 		<div class="form-group row row"><label class="col-sm-3 control-label">Alamat</label><div class="col-sm-9"><?php echo $t->jalan;?> RT <?php echo $t->rt;?> RW  <?php echo $t->rw;?> Dusun   <?php echo $t->dusun;?>
-		Desa <?php echo $t->desa;?> Kec.   <?php echo $t->kec;?> Kab. <?php echo $t->kab;?> Prov   <?php echo $t->prov;?></div></div>
+		Desa <?php echo $t->desa;?> Kec.   <?php echo $t->kec;?> <?php echo $t->kab;?> Prov   <?php echo $t->prov;?></div></div>
 		<div class="form-group row row"><label class="col-sm-3 control-label">Jarak ke sekolah</label><div class="col-sm-9"><?php echo $t->jarak;?></div></div>
 		<div class="form-group row row"><label class="col-sm-3 control-label">Jenis Tempat Tinggal</label><div class="col-sm-9"><?php echo $t->jenrumah;?></div></div>
 <div class="form-group row row"><div class="col-sm-3"><label class="control-label">Dinding Rumah</label></div><div class="col-sm-9">
