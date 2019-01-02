@@ -229,7 +229,14 @@ class Situs extends CI_Controller {
 	function pencarian()
 	{
 		$kata=strip_tags($this->input->post('katakunci'));
-		$tabel=$this->input->post('pencarian');
+		$tabel=strip_tags($this->input->post('pencarian'));
+		if(($tabel == 'profil') or ($tabel == 'pengumuman') or ($tabel == 'agenda') or ($tabel == 'tutorial'))
+		{
+		}
+		else
+		{
+			$tabel = 'berita';
+		}
 		$this->load->model('Situs_model');
 		$data["soal_polling"] = $this->Situs_model->Tampil_Polling();
 		$soal_poll = $data["soal_polling"];
@@ -758,6 +765,8 @@ class Situs extends CI_Controller {
 	function lupasandi()
 	{
 		$get_proses = $this->uri->segment(3);
+		$data['telegram']= '';
+		$data['token'] = '';
 		$data['proses'] = '';
 		if($get_proses == 1)
 		{

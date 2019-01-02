@@ -50,7 +50,7 @@ class Sinkronard extends CI_Controller
 		$this->load->view('shared/bawah');
 
 	}
-	function formnilai($category_level_id=null, $category_majors_id=null,$category_subjects_id=null,$id_mapel=null)
+	function formnilai($tahun1=null,$semester=null,$category_level_id=null, $category_majors_id=null,$category_subjects_id=null,$id_mapel=null)
 	{
 		$data = array();
 		$data["nim"]='';
@@ -60,8 +60,8 @@ class Sinkronard extends CI_Controller
 		$data['category_majors_id'] = $category_majors_id;
 		$data['category_subjects_id'] = $category_subjects_id;
 		$data['id_mapel'] = $id_mapel;
-		$data['thnajaran'] = cari_thnajaran();
-		$data['semester'] = cari_semester();
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
 		$this->load->model('Guru_model', 'guru');
 		$data['url_ard_unduh'] = $this->ref->ambil_nilai('url_ard_unduh');
 		$this->load->view('admin/bg_head',$data);
@@ -383,15 +383,15 @@ class Sinkronard extends CI_Controller
 			redirect('admin');
 		}
 	}//kalau tatausaha
-	function formwalikelas($id_walikelas=null)
+	function formwalikelas($tahun1=null,$semester=null,$id_walikelas=null)
 	{
 		$data = array();
 		$data["nim"]='';
 		$data['loncat'] = '';
 		$data['judulhalaman'] = 'Unggah Catatan Walikelas';
 		$data['id_walikelas'] = $id_walikelas;
-		$data['thnajaran'] = cari_thnajaran();
-		$data['semester'] = cari_semester();
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
 		$this->load->view('admin/bg_head',$data);
 		$this->load->view('sinkronard/form_unggah_catatan_walikelas',$data);
 		$this->load->view('shared/bawah');
@@ -697,15 +697,15 @@ class Sinkronard extends CI_Controller
 			} //akhir kalau tfnidak error upload
 		} // akhir kalau ada file terkirim
 	}//kalau tatausaha
-	function kirimnilaiharian($id_mapel=null)
+	function kirimnilaiharian($tahun1=null,$semester=null,$id_mapel=null)
 	{
 		$data = array();
 		$data["nim"]='';
 		$data['loncat'] = '';
 		$data['judulhalaman'] = 'Unggah Nilai Ke ARD';
 		$data['id_mapel'] = $id_mapel;
-		$data['thnajaran'] = cari_thnajaran();
-		$data['semester'] = cari_semester();
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
 //		$data['url_ard'] = $this->ref->ambil_nilai('url_ard');
 		$this->load->view('admin/bg_head',$data);
 		$this->load->view('sinkronard/form_kirim_nilai',$data);
@@ -718,15 +718,13 @@ class Sinkronard extends CI_Controller
 		$data['loncat'] = '';
 		$data['judulhalaman'] = 'Unggah Nilai';
 		$data['id_mapel'] = $id_mapel;
-		$data['thnajaran'] = cari_thnajaran();
-		$data['semester'] = cari_semester();
 		$data['url_ard'] = $this->ref->ambil_nilai('url_ard');
 		$data['adamenu'] = '';
 		$this->load->view('admin/bg_head',$data);
 		$this->load->view('sinkronard/frame_form_kirim_nilai',$data);
 		$this->load->view('shared/bawah');
 	}
-	function kirimnilaiakhir($id_mapel=null,$nomor=null)
+	function kirimnilaiakhir($tahun1=null,$semester=null,$id_mapel=null,$nomor=null)
 	{
 		$data = array();
 		$data["nim"]=$this->session->userdata('username');
@@ -734,10 +732,10 @@ class Sinkronard extends CI_Controller
 		$data["status"]=$this->session->userdata('tanda');
 		$data['judulhalaman'] = 'Kirim Daftar Nilai Siswa ke ARD';
 		$data['loncat'] = '';
-		$kelas='';
-		$thnajaran='';
-		$mapel='';
-		$itemnilai='';
+		$data['kelas']='';
+		$data['mapel']='';
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
 		$this->load->model('Guru_model');
 		$kodeguru = $data["nim"];
 		$data['id_mapel']=$id_mapel;
@@ -773,7 +771,7 @@ class Sinkronard extends CI_Controller
 				$data['nomor'] = $nomor;
 				if ((empty($kkm)) or (empty($ranah)))
 				{
-					redirect('admin');
+					redirect('admin/kkm_kosong');
 				}
 				$data['url_ard'] = $this->ref->ambil_nilai('url_ard');
 				$data['subjects_value'] = $subjects_value;
@@ -788,8 +786,6 @@ class Sinkronard extends CI_Controller
 		}
 		else
 		{
-			$data['thnajaran'] = cari_thnajaran();
-			$data['semester'] = cari_semester();
 			$this->load->view('admin/bg_head',$data);
 			$this->load->view('sinkronard/kirim_daftar_nilai_akhir_ke_ard',$data);
 			$this->load->view('shared/bawah');
@@ -851,15 +847,16 @@ class Sinkronard extends CI_Controller
 			redirect ('admin');
 		}
 	}
-	function catatanwalikelas()
+	function catatanwalikelas($tahun1=null,$semester=null)
 	{
 		$data = array();
 		$data["nim"]=$this->session->userdata('username');
 		$data["nama"]=$this->session->userdata('nama');
 		$data["status"]=$this->session->userdata('tanda');
 		$data['judulhalaman'] = 'Tanggapan Walikelas';
-		$data['thnajaran'] = cari_thnajaran();
-		$data['semester'] = cari_semester();
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
+		$data['loncat'] = '';
 		$this->load->view('admin/bg_head',$data);
 		$this->load->view('sinkronard/catatan_walikelas',$data);
 		$this->load->view('shared/bawah');
