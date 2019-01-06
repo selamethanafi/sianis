@@ -2,16 +2,17 @@
 //============================================================+
 // Nama Berkas 		: fungsi_helper.php
 // Lokasi      		: application/helpers
-// Terakhir diperbarui	: Rab 01 Jul 2015 11:53:41 WIB 
+// Terakhir diperbarui	: Min 06 Jan 2019 20:27:14 WIB 
 // Author      		: Selamet Hanafi
+//             		  selamethanafi@yahoo.co.id
 //
 // (c) Copyright:
-//               MAN Tengaran
-//               www.mantengaran.sch.id
-//               selamethanafi@yahoo.co.id
+//               Selamet Hanafi
+//               www.sianis.web.id
+//
 //
 // License:
-//    Copyright (C) 2009-2014 MAN Tengaran
+//    Copyright (C) 2014 Selamet Hanafi
 //    Informasi detil ada di LISENSI.TXT 
 //============================================================+
 ?>
@@ -440,7 +441,7 @@ if ( ! function_exists('cari_thnajaran'))
 			$tahuny1 = $tahuny-1;
 			$thnajaran = ''.$tahuny1.'/'.$tahuny.'';
 		}
-		//$thnajaran = '2017/2018';
+		//$thnajaran = '2018/2019';
 		return $thnajaran;
 	}
 }
@@ -2665,7 +2666,7 @@ if ( ! function_exists('predikat_nilai_2018'))
 			}
 		}
 
-		else
+		elseif($kkm == 70)
 		{
 			if($nilai >= 90)
 			{
@@ -2684,6 +2685,10 @@ if ( ! function_exists('predikat_nilai_2018'))
 				$predikat_nilai = 'D';
 			}
 		}
+		else
+		{
+			$predikat_nilai = '?';
+		}
 	return $predikat_nilai;
   	}
 }
@@ -2691,21 +2696,124 @@ if ( ! function_exists('predikat_deskripsi_nilai_2018'))
 {
 	function predikat_deskripsi_nilai_2018($nilai,$kkm) 
 	{
-		if($nilai >= 90)
+		if($kkm == 71)
 		{
-				$predikat_nilai = 'sangat_baik';
+			if($nilai >= 91)
+			{
+					$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 81)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 71)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
 		}
-		elseif($nilai >= 76)
+		elseif($kkm == 72)
 		{
-			$predikat_nilai = 'baik';
+			if($nilai >= 90)
+			{
+				$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 81)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 72)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
 		}
-		elseif($nilai >= 70)
+		elseif($kkm == 73)
 		{
-			$predikat_nilai = 'cukup';
+			if($nilai >= 91)
+			{
+				$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 82)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 73)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
+		}
+		elseif($kkm == 74)
+		{
+			if($nilai >= 92)
+			{
+					$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 83)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 74)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
+		}
+		elseif($kkm == 75)
+		{
+			if($nilai >= 91)
+			{
+					$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 83)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 75)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
+		}
+
+		elseif($kkm == 70)
+		{
+			if($nilai >= 90)
+			{
+				$predikat_nilai = 'sangat baik';
+			}
+			elseif($nilai >= 80)
+			{
+				$predikat_nilai = 'baik';
+			}
+			elseif($nilai >= 70)
+			{
+				$predikat_nilai = 'cukup';
+			}
+			else
+			{
+				$predikat_nilai = 'kurang';
+			}
 		}
 		else
 		{
-			$predikat_nilai = 'kurang';
+			$predikat_nilai = '?';
 		}
 	return $predikat_nilai;
   	}
@@ -3117,6 +3225,113 @@ if ( ! function_exists('sekolah_ard'))
 			$kode_sekolah_ard = "S3";
 			}
 		return $kode_sekolah_ard;	
+	}
+}
+if ( ! function_exists('cek_host_ard'))
+{
+	function cek_host_ard($url_ard_unduh)
+	{
+		$online = 0;
+		$port = substr($url_ard_unduh,-2);
+		$port_host = 80;
+		if(is_numeric($port))
+		{
+			$port_host = $port;
+		}
+		if(strpos($url_ard_unduh, 'https://') !== false)
+		{
+			$server_pusate = 'ssl://'.str_replace('https://','',$url_ard_unduh);
+			$port_host = '443';
+		}
+		if(strpos($url_ard_unduh, 'http://') !== false)
+		{
+			$server_pusate = str_replace('http://','',$url_ard_unduh);
+		}
+		if($socket =@ fsockopen($server_pusate, $port_host, $errno, $errstr, 10))
+		{
+			$online = 1;
+			fclose($socket);
+		}
+		return $online;	
+	}
+}
+if ( ! function_exists('koneksi_mysql'))
+{
+	function koneksi_mysql($url_ard_unduh)
+	{
+		$file = file_get_contents($url_ard_unduh.'/api/sekolah.php');
+		$json = json_decode($file, true);
+		$koneksi_mysql = '<h3 class="text-danger">Gagal tersambung ke database ARD</h3>';
+		if($json)
+		{
+			foreach($json as $data)
+			{
+				$koneksi_mysql = $data['school_id'];
+			}
+		}
+		return $koneksi_mysql;	
+	}
+}
+if ( ! function_exists('batas_sangat_baik'))
+{
+	function batas_sangat_baik($kkm)
+	{
+		if($kkm == 71)
+		{
+			$batas = 91;
+		}
+		elseif($kkm == 72)
+		{
+			$batas = 90;
+		}
+		elseif($kkm == 73)
+		{
+			$batas = 91;
+		}
+		elseif($kkm == 74)
+		{
+			$batas = 92;
+		}
+		elseif($kkm == 75)
+		{
+			$batas = 91;
+		}
+		else
+		{
+			$batas = 90;
+		}
+		return $batas;	
+	}
+}
+if ( ! function_exists('batas_baik'))
+{
+	function batas_baik($kkm)
+	{
+		if($kkm == 71)
+		{
+			$batas = 81;
+		}
+		elseif($kkm == 72)
+		{
+			$batas = 81;
+		}
+		elseif($kkm == 73)
+		{
+			$batas = 82;
+		}
+		elseif($kkm == 74)
+		{
+			$batas = 83;
+		}
+		elseif($kkm == 75)
+		{
+			$batas = 83;
+		}
+		else
+		{
+			$batas = 80;
+		}
+		return $batas;	
 	}
 }
 // ------------------------------------------------------------------------
