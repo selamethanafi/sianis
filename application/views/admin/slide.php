@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas : isi_index.php
-// Lokasi      : application/views/guru
-// Author      : Selamet Hanafi
-//               selamethanafi@yahoo.co.id
+// Dimutakhirkan	: Rab 02 Jan 2019 20:44:43 WIB 
+// Nama Berkas 		: slide.php
+// Lokasi      		: application/views/admin
+// Author      		: Selamet Hanafi
+//              	selamethanafi@yahoo.co.id
 //
 // (c) Copyright:
 //               Selamet Hanafi
@@ -139,6 +140,31 @@ foreach($tb->result() as $b)
 {
 	$sub_caption_slide_6 = $b->nilai;
 }
+if(empty($caption_slide_1))
+{
+	$caption_slide_1 = 'Slide 1';
+}
+if(empty($caption_slide_2))
+{
+	$caption_slide_2 = 'Slide 2';
+}
+if(empty($caption_slide_3))
+{
+	$caption_slide_3 = 'Slide 3';
+}
+if(empty($caption_slide_4))
+{
+	$caption_slide_4 = 'Slide 4';
+}
+if(empty($caption_slide_5))
+{
+	$caption_slide_5 = 'Slide 5';
+}
+if(empty($caption_slide_6))
+{
+	$caption_slide_6 = 'Slide 6';
+}
+
 echo '<div class="container-fluid"><a href="'.base_url().'admin/slide/1"><img src="'.base_url().'images/1.jpg" alt="'.$caption_slide_1.'"><div class="centered"><h3>'.$caption_slide_1.'</h3><p>'.$sub_caption_slide_1.'</p></div></a></div>';
 echo '<div class="container-fluid"><a href="'.base_url().'admin/slide/2"><img src="'.base_url().'images/2.jpg" alt="'.$caption_slide_2.'"><div class="centered"><h3>'.$caption_slide_2.'</h3><p>'.$sub_caption_slide_2.'</p></div></a></div>';
 echo '<div class="container-fluid"><a href="'.base_url().'admin/slide/3"><img src="'.base_url().'images/3.jpg" alt="'.$caption_slide_3.'"><div class="centered"><h3>'.$caption_slide_3.'</h3><p>'.$sub_caption_slide_3.'</p></div></a></div>';

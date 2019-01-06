@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Sen Jum 30 Mar 2018 13:10:50 WIB
-// Nama Berkas 		: bg_atas.php
+// Dimutakhirkan	: Rab 02 Jan 2019 19:45:13 WIB 
+// Nama Berkas 		: bg_head.php
 // Lokasi      		: application/views/admin/
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
@@ -136,6 +136,23 @@ if(!isset($adamenu))
 			</li>
 
 			 <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aplikasi Rapor Digital <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+<?php
+/*
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/entity__category_subjects">entity__category_subjects</a></li>
+*/
+?>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/walikelas">Unduh Kode Kelas</a></li>
+
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formnilai">Unggah Nilai</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formwalikelas">Unggah Catatan Walikelas</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiharian">Kirim Nilai Harian</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiakhir">Kirim Nilai Akhir</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/catatanwalikelas">Kirim Catatan Walikelas</a></li>
+				</ul>
+			</li>
+<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lain - Lain <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="<?php echo base_url();?>admin/namasiswa">Pemutakhiran Nama Siswa</a></li>
@@ -144,21 +161,6 @@ if(!isset($adamenu))
 					<li><a class="dropdown-item" href="<?php echo base_url();?>admin/mapel">Daftar Menu Materi Mapel di Laman</a></li>
 				</ul>
 			</li>
-			 <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ARD <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/entity__category_subjects">entity__category_subjects</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formnilai">Unggah Nilai</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formwalikelas">Unggah Catatan Walikelas</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiharian">Kirim Nilai Harian</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiakhir">Kirim Nilai Akhir</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/catatanwalikelas">Kirim Catatan Walikelas</a></li>
-
-
-
-				</ul>
-			</li>
-
 		</ul>
       <ul class="nav navbar-nav ml-auto">
         <li><a class="dropdown-item" href="<?php echo base_url();?>login/logout" data-confirm="Yakin hendak keluar?"> Keluar <span class="fa fa-sign-out-alt"></span></a></li>
