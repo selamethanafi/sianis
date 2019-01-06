@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Kam 31 Des 2015 12:23:28 WIB 
-// Nama Berkas 		: daftarnilai.php
-// Lokasi      		: application/views/guru/
+// Dimutakhirkan	: Min 06 Jan 2019 20:52:26 WIB 
+// Nama Berkas 		: kirim_daftar_nilai_ke_ard.php
+// Lokasi      		: application/views/ard
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
 //
@@ -28,7 +28,35 @@ foreach($ta->result() as $a)
 <div class="card">
 <div class="card-header"><h3><?php echo $judulhalaman;?></h3></div>
 <div class="card-body">
-<p><a href="<?php echo base_url().'guruard/unduhkodenilai/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-download"></span>   <b>Unduh Kode Nilai dari ARD</b></a> <a href="'.base_url().'guruard/kirimnilaiakhir/'.$id_mapel.'" class="btn btn-success"><span class="fa fa-upload"></span>   <b>Kirim Nilai Akhir ke ARD</b></a></p>';?>
+<?php
+if($pilihan == 1)
+{
+	$query = $this->db->query("select * from `nilai_pilihan` where `thnajaran`='$thnajaran' and `semester`='$semester' and `kelas`='$kelas' and `mapel` = '$mapel' and `status`='Y' order by `no_urut`");
+}
+else
+{
+	$query = $this->db->query("select * from `nilai` where `thnajaran`='$thnajaran' and `semester`='$semester' and `kelas`='$kelas' and `mapel` = '$mapel' and `status`='Y' order by `no_urut`");
+}
+$cacahsiswa = $query->num_rows();
+if($pilihan == 1)
+{
+	$query = $this->db->query("select count(student_value) as cacah from `nilai_pilihan` where `thnajaran`='$thnajaran' and `semester`='$semester' and `kelas`='$kelas' and `mapel` = '$mapel' and `status`='Y' and `student_value` != '' ");
+}
+else
+{
+	$query = $this->db->query("select count(student_value) as cacah from `nilai` where `thnajaran`='$thnajaran' and `semester`='$semester' and `kelas`='$kelas' and `mapel` = '$mapel' and `status`='Y' and `student_value` != '' order by `no_urut`");
+}
+foreach($query->result_array() as $data)
+{
+	$hasil	= $data['cacah'];
+}
+//echo 'Cacah '.$hasil;
+echo '<p><a href="'.base_url().'guruard/unduhkodenilai/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-download"></span>   <b>Unduh Kode Nilai dari ARD</b></a> ';
+if($hasil == $cacahsiswa)
+{
+	echo ' <a href="'.base_url().'guruard/kirimnilaiakhir/'.$id_mapel.'" class="btn btn-success"><span class="fa fa-upload"></span>   <b>Kirim Nilai Akhir ke ARD</b></a>';
+}
+echo '</p>';?>
 <form class="form-horizontal" role="form">
 <div class="form-group row"><div class="col-sm-5"><label class="control-label">Tahun Pelajaran</label></div><div class="col-sm-7"><p class="form-control-static"><?php echo $thnajaran;?></div></div>
 <div class="form-group row"><div class="col-sm-5"><label class="control-label">Semester</label></div><div class="col-sm-7"><p class="form-control-static"><?php echo $semester;?></div></div>
@@ -51,7 +79,7 @@ $cacahsiswa = $query->num_rows();
 //school_class_id;
 if(empty($school_class_id))
 {
-	echo '<div class="alert alert-danger">Kode Kelas dari ARD belum ada<?div>';
+	echo '<div class="alert alert-danger">Kode Kelas dari ARD belum ada</div>';
 }
 if(count($query->result())>0)
 {
@@ -172,10 +200,12 @@ if(count($query->result())>0)
 		else
 		{
 			echo '<tr><td align="center">'.$nomor.'</td><td>'.$namasiswa.'</td><td colspan="11">belum ada kode nilai dari ARD</div>';
+			$galat++;
 		}
 		$nomor++;
 	}
 	echo '</table></div>';
+//	echo $galat;
 	if($galat==0)
 	{
 		echo '<p class="text-center"><input type="submit" value="Kirim ke ARD" class="btn btn-success"></p>';

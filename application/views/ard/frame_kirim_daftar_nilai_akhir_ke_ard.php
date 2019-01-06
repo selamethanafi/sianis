@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Kam 31 Des 2015 12:23:28 WIB 
-// Nama Berkas 		: daftarnilai.php
-// Lokasi      		: application/views/guru/
+// Dimutakhirkan	: Min 06 Jan 2019 21:12:43 WIB 
+// Nama Berkas 		: frame_kirim_daftar_nilai_akhirf_ke_ard.php
+// Lokasi      		: application/views/ard/
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
 //
@@ -100,11 +100,15 @@ Kode Mapel ARD <?php echo $subjects_value;?><br />
 	<tr align="center"><td><strong>Nama</strong></td>
 	<?php
 	echo '<td>KKM</td><td><strong>RPH</strong></td><td><strong>PAS</strong></td><td><strong>Nilai Pengetahuan</strong></td><td><strong>Predikat</strong></td><td><strong>Praktik</strong></td><td><strong>Portofolio</strong></td><td><strong>Proyek</strong></td><td><strong>Nilai Keterampilan</strong></td><td><strong>Predikat</strong></td></tr></thead>';
-	echo '<tr><td>'.$namasiswa.'</td>';
+	echo '<tr align="center"><td>'.$namasiswa.'</td>';
 			echo '<td>'.$kkm.'</td><td>'.$value_daily.'</td><td>'.$value_final.'</td><td>'.$value_knowledge_total.'</td><td>'.$value_knowledge_predicate.'</td><td>'.$value_practice.'</td><td>'.$value_portfolio.'</td><td><strong>'.$value_project.'</strong></td><td>'.$value_skill_total.'</td><td>'.$value_skill_predicate.'</td></tr>';
 			echo '<tr><td colspan="10">'.$value_knowledge_description.'</td></tr>';
 			echo '<tr><td colspan="10">'.$value_skill_description.'</td></tr>';
 	echo '</table></div>';
+	}
+	else
+	{
+		echo $namasiswa.' belum mendapat kode nilai ARD';
 	}
 }
 else
