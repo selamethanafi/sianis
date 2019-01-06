@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Sel 10 Mei 2016 21:47:55 WIB 
+// Dimutakhirkan	: Rab 02 Jan 2019 20:51:04 WIB 
 // Nama Berkas 		: kkm_edit.php
 // Lokasi      		: application/views/guru/
 // Author      		: Selamet Hanafi
@@ -181,7 +181,7 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="cacah_ulangan_harian" class="control-label">Cacah Ulangan Harian (maks 10)</label></div>
+		<div class="col-sm-3"><label for="cacah_ulangan_harian" class="control-label">Cacah Penilaian Harian (maks 10)</label></div>
 		<div class="col-sm-9" ><input type="number" min="0" max="10" name="cacah_ulangan_harian" value="<?php echo $ncacah_ulangan_harian;?>" class="form-control"></div>
 	</div>
 
@@ -194,7 +194,7 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9" ><input type="number" min="0" max="4" name="cacah_kuis" value="0" class="form-control" readonly></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="bobot_ulangan_harian" class="control-label">Bobor Penilaian Harian</label></div>
+		<div class="col-sm-3"><label for="bobot_ulangan_harian" class="control-label">Bobot Penilaian Harian</label></div>
 		<div class="col-sm-9" ><input type="number" min="0" max="100" name="bobot_ulangan_harian" value="<?php echo $nbobot_ulangan_harian;?>" class="form-control"></div>
 	</div>
 <?php
@@ -214,7 +214,7 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 */
 ?>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="bobot_semester" class="control-label">Bobot Ulangan Akhir Semester / Kenaikan Kelas</label></div>
+		<div class="col-sm-3"><label for="bobot_semester" class="control-label">Bobot Penilaian Akhir Semester / Akhir Tahun</label></div>
 		<div class="col-sm-9" ><input type="number" min="0" max="100" name="bobot_semester" value="<?php echo $nbobot_semester;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -231,32 +231,26 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 	</div>
 
 	<div class="form-group row">
-		<div class="col-sm-12 alert alert-info"><p>Sebelum K2013 Bobot Ulangan Harian + Bobot Tugas + Bobot Mid + Bobot Ulangan Semester / UKK = 100</p>
-			<p>K2013</p>
-			<p>Bobot Ulangan Harian + Bobot Kuis + Bobot Tugas = 33%</p>
-			<p>Bobot Mid = 33%</p>
-			<p>Bobot Ulangan Semester / UKK = 34%</p>
-		</div>
 		<div class="col-sm-12"><strong>Parameter Untuk Analisis / Deskripsi LCK</strong></div>
 	</div>
 	<div class="form-group row">
 		<?php
 		$tahun1 = substr($thnajaran,0,4);
 		?>
-		<div class="col-sm-12"><h3>Ulangan Harian I</h3></div>
-		<div class="col-sm-3"><label for="" class="control-label">KKM UH1</label></div>
+		<div class="col-sm-12"><h3>Penilaian Harian I</h3></div>
+		<div class="col-sm-3"><label for="" class="control-label">KKM PH1</label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_uh1" value="<?php echo $kkm_uh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator UH1</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh1';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PH1</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh1';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A UH1 <a href="#" title="Info lebih lanjut" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A PH1 <a href="#" title="Info lebih lanjut" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="50" name="nsoal_uh1" value="<?php echo $nsoal_uh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B UH1 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B PH1 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="10" name="nsoal_b_uh1" value="<?php echo $nsoal_b_uh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -272,20 +266,20 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_uh1" value="<?php echo $nilai_maks_bagian_b_uh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-12"><h3>Ulangan Harian II</h3></div>
-		<div class="col-sm-3"><label for="" class="control-label">KKM UH2</label></div>
+		<div class="col-sm-12"><h3>Penilaian Harian II</h3></div>
+		<div class="col-sm-3"><label for="" class="control-label">KKM PH2</label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_uh2" value="<?php echo $kkm_uh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator UH2</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh2';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PH2</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh2';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A UH2 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A PH2 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="50" name="nsoal_uh2" value="<?php echo $nsoal_uh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B UH2 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B PH2 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="10" name="nsoal_b_uh2" value="<?php echo $nsoal_b_uh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -301,20 +295,20 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_uh2" value="<?php echo $nilai_maks_bagian_b_uh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-12"><h3>Ulangan Harian III</h3></div>
-		<div class="col-sm-3"><label for="" class="control-label">KKM UH3</label></div>
+		<div class="col-sm-12"><h3>Penilaian Harian III</h3></div>
+		<div class="col-sm-3"><label for="" class="control-label">KKM PH3</label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_uh3" value="<?php echo $kkm_uh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator UH3</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh3';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PH3</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh3';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A UH3 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A PH3 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="50" name="nsoal_uh3" value="<?php echo $nsoal_uh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B UH3 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B PH3 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="10" name="nsoal_b_uh3" value="<?php echo $nsoal_b_uh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -330,20 +324,20 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_uh3" value="<?php echo $nilai_maks_bagian_b_uh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-12"><h3>Ulangan Harian IV</h3></div>
-		<div class="col-sm-3"><label for="" class="control-label">KKM UH4</label></div>
+		<div class="col-sm-12"><h3>Penilaian Harian IV</h3></div>
+		<div class="col-sm-3"><label for="" class="control-label">KKM PH4</label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_uh4" value="<?php echo $kkm_uh4;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator UH4</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh4';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PH4</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uh4';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A UH4 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A PH4 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="50" name="nsoal_uh4" value="<?php echo $nsoal_uh4;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B UH4 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B PH4 <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="10" name="nsoal_b_uh4" value="<?php echo $nsoal_b_uh4;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -359,13 +353,13 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_uh4" value="<?php echo $nilai_maks_bagian_b_uh4;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-12"><h3>Ulangan Tengah Semester</h3></div>
+		<div class="col-sm-12"><h3>Penilaian Tengah Semester</h3></div>
 		<div class="col-sm-3"><label for="" class="control-label">KKM MID</label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_mid" value="<?php echo $kkm_mid;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator MID</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/mid';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PTS</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/mid';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A mid <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
@@ -388,20 +382,20 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_mid" value="<?php echo $nilai_maks_bagian_b_mid;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-12"><h3>Ulangan Akhir Semester / Ulangan Kenaikan Kelas</h3></div>
-		<div class="col-sm-3"><label for="" class="control-label">KKM UAS</label></div>
+		<div class="col-sm-12"><h3>Penilaian Akhir Semester / Penilaian Kenaikan Kelas</h3></div>
+		<div class="col-sm-3"><label for="" class="control-label">KKM PAS/PAT </label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="kkm_uas" value="<?php echo $kkm_uas;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Indikator UAS</label></div>
-		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uas';?>" target="_blank" class="btn btn-link"><span class="glyphicon glyphicon-new-window"></span></a></div>
+		<div class="col-sm-3"><label for="" class="control-label">Indikator PAS/PAT</label></div>
+		<div class="col-sm-9"><a href="<?php echo base_url();?>akreditasi/indikator/<?php echo $tahun1.'/'.$semester.'/'.$id_mapel.'/uas';?>" target="_blank" class="btn btn-link"><span class="fa fa-upload"></span></a></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A uas <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian A PAS/PAT <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi cacah soal pilihan, Bentuk soal uraian diisi cacah soal uraian, Bentuk soal pilihan + uraian diisi cacah soal pilihan"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="50" name="nsoal_uas" value="<?php echo $nsoal_uas;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B uas <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Jumlah Soal Bagian B PAS/PAT <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-content="Bentuk soal pilihan diisi 0, Bentuk soal uraian diisi 0, Bentuk soal pilihan + uraian diisi cacah soal uraian"><span class="badge badge-primary">INFO</span></a></label></div>
 		<div class="col-sm-9"><input type="number" min="0" max="10" name="nsoal_b_uas" value="<?php echo $nsoal_b_uas;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
@@ -417,42 +411,42 @@ echo form_open('guru/updatekkm','class="form-horizontal" role="form"');?>
 		<div class="col-sm-9"><input type="number" min="0" max="100" name="nilai_maks_bagian_b_uas" value="<?php echo $nilai_maks_bagian_b_uas;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian I</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian I</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok A </label></div>
 			<div class="col-sm-7"><input type="text" name="kunciuh1" value="<?php echo $kunciuh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian I</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian I</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok B </label></div>
 			<div class="col-sm-7"><input type="text" name="kuncibuh1" value="<?php echo $kuncibuh1;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian II</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian II</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok A</label></div>
 			<div class="col-sm-7"><input type="text" name="kunciuh2" value="<?php echo $kunciuh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian II</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian II</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok B</label></div>
 			<div class="col-sm-7"><input type="text" name="kuncibuh2" value="<?php echo $kuncibuh2;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian III</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian III</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok A</label></div>
 			<div class="col-sm-7"><input type="text" name="kunciuh3" value="<?php echo $kunciuh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian III</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian III</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok B</label></div>
 			<div class="col-sm-7"><input type="text" name="kuncibuh3" value="<?php echo $kuncibuh3;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Ulangan Harian IV</label></div>
+		<div class="col-sm-3"><label for="" class="control-label">Kunci Jawaban Penilaian Harian IV</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok A</label></div>
 			<div class="col-sm-7"><input type="text" name="kunciuh4" value="<?php echo $kunciuh4;?>" class="form-control"></div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-3"><label class="control-label">Kunci Jawaban Ulangan Harian IV</label></div>
+		<div class="col-sm-3"><label class="control-label">Kunci Jawaban Penilaian Harian IV</label></div>
 			<div class="col-sm-2"><label for="" class="control-label">Kelompok B</label></div>
 			<div class="col-sm-7"><input type="text" name="kuncibuh4" value="<?php echo $kuncibuh4;?>" class="form-control"></div>
 	</div>
