@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas 		: bg_atas_cetak.php
-// Lokasi      		: application/views/shared/
+// Dimutakhirkan	: Rab 02 Jan 2019 15:13:21 WIB 
+// Nama Berkas 		: spmtpbdtt.php
+// Lokasi      		: application/views/dupak/
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
 //
@@ -98,7 +99,7 @@ foreach($ta->result() as $a)
 	$tb = $this->db->query("SELECT * FROM `skp_skor_guru` where `golongan`='$golongann' and `nip` = '$nip' and `kode`='00' and `tahun` = '$tahun'");
 	foreach($tb->result() as $b)
 	{
-		echo '<tr><td></td><td width="25" align="center">'.$nomor.'</td><td>Tahun '.$tahun.'</td><td align="center">'.$b->ak_r.'</td><td align="center">Baik</td></tr>';
+		echo '<tr><td></td><td width="25" align="center">'.$nomor.'</td><td>Tahun '.$tahun.'</td><td align="center">'.round($b->ak_r,2).'</td><td align="center">Baik</td></tr>';
 		$nomor++;
 	}
 }
@@ -118,7 +119,7 @@ foreach($tc->result() as $c)
 	{
 		$kategori = 'Baik';
 	}
-	echo '<tr><td></td><td width="25" align="center">'.$nomor.'</td><td>'.$this->dupak->Cari_Kegiatan_Berdasar_Kode($kode).'</td><td align="center">'.$c->ak_item.'</td><td align="center">'.$kategori.'</td></tr>';
+	echo '<tr><td></td><td width="25" align="center">'.$nomor.'</td><td>'.$this->dupak->Cari_Kegiatan_Berdasar_Kode($kode).'</td><td align="center">'.round($c->ak_item,2).'</td><td align="center">'.$kategori.'</td></tr>';
 	$nomor++;
 }
 ?>

@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas 		: bg_atas_cetak.php
-// Lokasi      		: application/views/shared/
+// Dimutakhirkan	: Rab 02 Jan 2019 15:13:21 WIB 
+// Nama Berkas 		: spmkpkb.php
+// Lokasi      		: application/views/dupak/
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
 //
@@ -99,7 +100,7 @@ foreach($tc->result() as $c)
 			}
 			else
 			{
-				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50" align="center">'.$this->dupak->Cari_Ak($kode).'</td><td align="center">'.$this->dupak->Cari_Ak($kode).'</td><td>'.$a->bukti.'</td></tr>';
+				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50" align="center">'.round($this->dupak->Cari_Ak($kode),2).'</td><td align="center">'.round($this->dupak->Cari_Ak($kode),2).'</td><td>'.$a->bukti.'</td></tr>';
 				$jpd = $jpd + $this->dupak->Cari_Ak($kode);
 			}
 			$nomor++;
@@ -126,7 +127,7 @@ foreach($tc->result() as $c)
 			}
 			else
 			{
-				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50">'.$this->dupak->Cari_Ak($kode).'</td><td>'.$this->dupak->Cari_Ak($kode).'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
+				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50">'.round($this->dupak->Cari_Ak($kode),2).'</td><td align="center">'.round($this->dupak->Cari_Ak($kode),2).'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
 				$jpi = $jpi + $this->dupak->Cari_Ak($kode);			
 			}
 		$nomor++;
@@ -153,7 +154,7 @@ foreach($tc->result() as $c)
 			}
 			else
 			{
-				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50">'.$this->dupak->Cari_Ak($kode).'</td><td>'.$this->dupak->Cari_Ak($kode).'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
+				echo '<tr><td></td><td align="center">'.$nomor.'</td><td>'.$a->nama_kegiatan.'</td><td width="100">'.$a->tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">1</td><td width="50">'.round($this->dupak->Cari_Ak($kode),2).'</td><td>'.round($this->dupak->Cari_Ak($kode),2).'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
 			}
 			$nomor++;
 			$jki = $jki + $this->dupak->Cari_Ak($kode);

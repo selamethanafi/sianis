@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas 		: bg_atas_cetak.php
-// Lokasi      		: application/views/shared/
+// Dimutakhirkan	: Rab 02 Jan 2019 15:13:21 WIB 
+// Nama Berkas 		: spmkptg.php
+// Lokasi      		: application/views/dupak/
 // Author      		: Selamet Hanafi
 //             		  selamethanafi@yahoo.co.id
 //
@@ -115,7 +116,7 @@ foreach($tc->result() as $c)
 			$cacahpj++;
 		}
 		$jak = $cacahpj * $this->dupak->Cari_Ak($kode);
-		echo '<tr><td align="center">'.$nomor.'</td><td>'.$nama_kegiatan.'</td><td width="100">'.$tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">'.$cacahpj.'</td><td width="50" align="center">'.$this->dupak->Cari_Ak($kode).'</td><td align="center">'.$jak.'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
+		echo '<tr><td align="center">'.$nomor.'</td><td>'.$nama_kegiatan.'</td><td width="100">'.$tanggal.'</td><td width="50">'.$this->dupak->Cari_Satuan($kode).'</td><td width="50" align="center">'.$cacahpj.'</td><td width="50" align="center">'.round($this->dupak->Cari_Ak($kode),2).'</td><td align="center">'.$jak.'</td><td>'.$this->dupak->Cari_Satuan($kode).'</td></tr>';
 		if($sudah>0)
 		{
 		echo '<tr class="danger"><td align="center">'.$nomor.'</td><td align="center" colspan="7">Masih ada '.$sudah.' kekurangan data. Silakan memeriksa nama kegiatan dan tanggal kegiatan</td></tr>';
