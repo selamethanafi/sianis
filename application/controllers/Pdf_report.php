@@ -1,20 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 /**
      * APLICATION INFO  : PDF Report with FPDF 1.6
-     * DATE CREATED     : 21 April 2012
-	 * DEVELOPED BY     : Anton Sofyan, A.Md
-          
-     * CONTACT    
-     *   - Email        : antonsofyan@yahoo.com
-     *   - Blog         : http://antonsofyan.stikeskuningan.ac.id/
-     *   - Facebook     : http://facebook.com/antonsofyan     
-     *   - Office       : Gedung Lantai 2 UPT Laboratorium Komputer
-                          Sekolah Tinggi Ilmu Kesehatan Kuningan (STIKKU)
-     *   - Address      : Jalan Lingkar Kadugede No. 02 Kabupaten Kuningan - Propinsi Jawa Barat
-     
-     * POWERED BY       : CodeIgniter 2.1 & FPDF 1.6	 
-	 */
+*/
+//============================================================+
+// Nama Berkas 		: Pdf_report.php
+// Lokasi      		: application/controllers
+// Terakhir diperbarui	: Rab 02 Jan 2019 20:01:54 WIB 
+// Author      		: Selamet Hanafi
+//             		  selamethanafi@yahoo.co.id
+//
+// (c) Copyright:
+//               Selamet Hanafi
+//               www.sianis.web.id
+//               admin@mantengaran.sch.id
+//
+// License:
+//    Copyright (C) 2014 Selamet Hanafi
+//    Informasi detil ada di LISENSI.TXT 
+//============================================================+
 
 class Pdf_report extends CI_Controller
 {
@@ -282,22 +285,22 @@ class Pdf_report extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	function cetakskp()
+	function cetakskp($tahun=null,$nip=null,$dicetak=null,$rekap=null)
 	{
 		$data=array();
 		$data["nim"]=$this->session->userdata('username');
 		$data["nama"]=$this->session->userdata('nama');
 		$data["status"]=$this->session->userdata('tanda');
+		$this->load->model('Referensi_model','ref');
+		$datax['unit_kerja'] = $this->ref->ambil_nilai('unit_kerja');
+		$datax['lokasi'] = $this->ref->ambil_nilai('lokasi');
+
 		if(($data["status"]=="Tatausaha") or ($data["status"]=="PA"))
 		{
 			$this->load->library('fpdf');
 		        define('FPDF_FONTPATH',$this->config->item('fonts_path'));
 			$this->load->model('Guru_model');
 			$this->load->model('Helper_model', 'helper');
-			$nip = $this->uri->segment(4);
-			$tahun=$this->uri->segment(3);
-			$dicetak=$this->uri->segment(5);
-			$rekap=$this->uri->segment(6);
 			$kode = $this->helper->cari_kode_dari_nip_pegawai($nip);
 			if ((!empty($tahun)) and (!empty($kode)))
 			{

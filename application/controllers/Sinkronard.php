@@ -1011,6 +1011,22 @@ class Sinkronard extends CI_Controller
 		$this->load->view('shared/bawah');
 	}
 */
+	function walikelas($tahun1=null,$semester=null)
+	{
+		$data=array();
+		$data["nim"]=$tanda = $this->session->userdata('username');
+		$data['judulhalaman'] = 'Unduh Kode Kelas dari ARD';
+		$this->load->model('Pengajaran_model');
+		$data_isi['daftar_tapel']= $this->Pengajaran_model->Tampilkan_Semua_Tahun();
+		$data_isi['tahun1']= $tahun1;
+		$data_isi['semester']= $semester;
+		$data_isi['loncat'] = '';
+		$this->load->model('Referensi_model','ref');
+		$data_isi['url_ard_unduh'] = $this->ref->ambil_nilai('url_ard_unduh');
+		$this->load->view('admin/bg_head',$data);
+		$this->load->view('sinkronard/walikelas',$data_isi);
+		$this->load->view('shared/bawah');
+	}
 
 /* akhir controller */
 }

@@ -1,20 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Kam 31 Des 2015 12:15:49 WIB 
-// Nama Berkas 		: Guru.php
+// Nama Berkas 		: Deskripsi.php
 // Lokasi      		: application/controllers/
+// Terakhir diperbarui	: Min 06 Jan 2019 20:27:14 WIB 
 // Author      		: Selamet Hanafi
-//	                  selamethanafi@yahoo.co.id
+//             		  selamethanafi@yahoo.co.id
 //
 // (c) Copyright:
-//               MAN Tengaran
-//               www.mantengaran.sch.id
-//               admin@mantengaran.sch.id
+//               Selamet Hanafi
+//               www.sianis.web.id
+//
 //
 // License:
-//    Copyright (C) 2014 MAN Tengaran
+//    Copyright (C) 2014 Selamet Hanafi
 //    Informasi detil ada di LISENSI.TXT 
 //============================================================+
+?>
+<?php
 class Deskripsi extends CI_Controller 
 {
 	function __construct()
