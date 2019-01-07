@@ -16,7 +16,6 @@
 //    Informasi detil ada di LISENSI.TXT 
 //============================================================+
 ?>
-?>
 <?php
 $te = $this->db->query("select * from `pkg_masa` where tahun = '$tahunpenilaian'");
 foreach($te->result() as $e)
