@@ -21,34 +21,6 @@
 	<div class="card-header"><h3><?php echo $judulhalaman;?></h3></div>
 	<div class="card-body">
 <?php
-	$server_pusate = $url_ard_unduh;
-	$server_pusat = $url_ard_unduh;
-	$port = substr($url_ard_unduh,-2);
-	$port_host = 80;
-	if(is_numeric($port))
-	{
-		$port_host = $port;
-	}
-	if(strpos($server_pusat, 'https://') !== false)
-	{
-		$server_pusate = 'ssl://'.str_replace('https://','',$server_pusat);
-		$port_host = '443';
-	}
-	if(strpos($server_pusat, 'http://') !== false)
-	{
-		$server_pusate = str_replace('http://','',$server_pusat);
-	}
-	if($socket =@ fsockopen($server_pusate, $port_host, $errno, $errstr, 30))
-	{
-		$online = 1;
-		fclose($socket);
-	}
-	else 
-	{
-		$online = 0;
-		echo 'Server ARD Unduh '.$server_pusate.' tidak menyala';
-	}
-//	echo ' Status Server ARD port '.$port_host.' - '.$online;
 	if (!empty($id_walikelas))
 		{
 		$this->db->query("delete from `m_walikelas` where `id_walikelas`='$id_walikelas'");
@@ -131,56 +103,6 @@ if ((!empty($thnajaran)) and (!empty($semester)))
 <div class="table-responsive"><table class="table table-hover table-striped table-bordered">
 <tr align="center"><td width="30"><strong>No.</strong></td><td><strong>Thnajaran</strong></td><td><strong>Semester</strong></td><td><strong>Kelas</strong></td><td><strong>Nama Guru</strong></td><td><strong>Kurikulum</strong></td><td><strong>Kode Rombel ARD</strong></td><td><strong>Hapus</strong></td></tr>
 <?php
-$daftar_mapel = $this->db->query("select * from `m_walikelas` where `thnajaran`='$thnajaran' and `semester`='$semester' order by `kelas`");
-foreach($daftar_mapel->result() as $b)
-{
-	$id_walikelas = $b->id_walikelas;
-	$kelas = $b->kelas;
-	$tingkat = kelas_jadi_tingkat($kelas);
-	if($tingkat == 'X')
-	{
-		$level = 10;
-	}
-	elseif($tingkat == 'XI')
-	{
-		$level = 11;
-	}
-	else
-	{
-		$level = 12;
-	}
-	$namakelas = substr($kelas,-1);
-	if(!is_numeric($namakelas))
-	{
-		$namakelas = 1;
-	}
-	$query=$this->db->query("select * from `m_ruang` where `ruang`='$kelas'");
-	foreach($query->result() as $c)
-	{
-		$category_majors_id = $c->category_majors_id;
-	}
-
-	if($online == 1)
-	{
-		$file = file_get_contents($url_ard_unduh.'/api/sekolah.php');
-		$json = json_decode($file, true);
-		$school_id = $json[0]['school_id'];
-		if($school_id == 'ada')
-		{
-			$file = file_get_contents($url_ard_unduh.'/api/kelas.php?category_level_id='.$level.'&school_class_name='.$namakelas.'&category_majors_id='.$category_majors_id);
-			$json = json_decode($file, true);
-			$school_class_id = $json[0]['school_class_id'];
-			if($school_class_id != 'tidak ada data')
-			{
-				$this->db->query("update `m_walikelas` set `kode_rombel`='$school_class_id' where `id_walikelas`='$id_walikelas'");
-			}
-		}
-//		echo $school_id;
-	}
-//	echo $url_ard_unduh.'/api/kelas.php?category_level_id='.$level.'&school_class_name='.$namakelas.'&category_majors_id='.$category_majors_id;
-
-}
-
 $nomor=1;
 $jtm = 0;
 $daftar_mapel = $this->db->query("select * from `m_walikelas` where `thnajaran`='$thnajaran' and `semester`='$semester' order by `kelas`");
