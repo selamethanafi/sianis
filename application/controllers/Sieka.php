@@ -234,6 +234,98 @@ class Sieka extends CI_Controller
 		redirect('sieka/harian');
 
 	}
+	function funggahkodebulanan()
+	{
+		$data["nim"]=$this->session->userdata('username');
+		$data["judulhalaman"]= 'Kegiatan bulanan';
+		$data["nama"]=$this->session->userdata('nama');
+		$data['nip']=$this->sieka->get_NIP($data["nim"]);
+		$this->load->view('guru/bg_atas',$data);
+		$this->load->view('sieka/form_unggah_kode_bulanan',$data);
+		$this->load->view('shared/bawah');
+	}
+	function prosesunggahkodebulanan()
+	{
+		$data["nim"]=$this->session->userdata('username');
+		$nim = $this->session->userdata('username');
+		$nip=$this->sieka->get_NIP($nim);
+		$this->load->library('csvimport');
+		$config['upload_path'] = 'uploads';
+		$config['allowed_types'] ='csv';
+		$config['overwrite'] = TRUE;	
+		$this->load->library('upload', $config);
+		if(!empty($_FILES['userfile']['name']))
+		{
+			if(!$this->upload->do_upload())
+			{
+			 	echo $this->upload->display_errors();
+			}
+			else 
+			{
+				$filePath = 'uploads/'.$_FILES['userfile']['name'];
+				$csvData = $this->csvimport->get_array($filePath);	
+				$adagalat = 0;
+				$pesan = '';
+				$n=0;
+				foreach($csvData as $field):
+					$baris = $n+1;
+					$pesan .= 'Baris '.$baris.' Kolom';
+					if(isset($field['id_bulanan']))
+					{
+						$id_bulanan = nopetik($field['id_bulanan']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' id_bulanan';
+						$id_bulanan = '';
+					}
+					if(isset($field['kegiatan']))
+					{
+						$kegiatan = nopetik($field['kegiatan']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' kegiatan';
+						$kegiatan = '';
+					}
+					if(isset($field['tahun']))
+					{
+						$tahun = nopetik($field['tahun']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' tahun';
+						$tahun = '';
+					}
+
+					if ($adagalat==0)
+					{
+						$this->db->query("update `sieka_bulanan` set `id_bulanan` = '$id_bulanan' where `kegiatan`='$kegiatan' and `tahun`='$tahun' and `nip`='$nip'");
+					}
+					$pesan .= ' TIDAK ADA<br />';
+					$n++;
+				endforeach;
+				unlink($filePath);
+				$datay['modul'] = 'Unggah ID Kegiatan Bulanan';
+				$datay['tautan_balik'] = ''.base_url().'sieka/funggahkodebulanan';
+				$datay['pesan'] = $pesan;
+				if($adagalat==1)
+				{
+					$this->load->view('guru/bg_head',$data);
+					$this->load->view('guru/adagalat',$datay);
+					$this->load->view('shared/bawah',$data);
+				}
+				else
+				{
+					redirect('sieka/bulanan');
+				}
+			} //akhir kalau tidak error upload
+		} // akhir kalau ada file terkirim
+	}//kalau tatausaha
+
 /* akhir controller */
 }
 ?>
