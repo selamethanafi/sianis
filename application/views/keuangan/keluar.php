@@ -88,6 +88,14 @@ if($aksi == 'tambah')
 	<option value='1'>Syahriyah</option>
 	<option value='2'>dpm</option>
 	<option value='3'>infaq</option>
+	<?php
+	$tb = $this->db->query("select * from `m_penerimaan` order by `macam_penerimaan`");
+	foreach($tb->result() as $b)
+	{
+		echo '<option value="'.$b->nomor.'">'.$b->macam_penerimaan.'</option>';
+	}
+	?>
+
 	</select></div></div>
 	<div class="form-group row"><div class="col-sm-3"><label class="control-label">Macam Pengeluaran</label></div><div class="col-sm-9">
 	<select name="jenis" class="form-control" id="kabupaten-kota"  required>
@@ -118,6 +126,7 @@ elseif($aksi == 'ubah')
 		foreach($query->result() as $q)
 		{
 			$tanggal = tanggal($q->tanggal);
+			$macam_penerimaan = $q->sumber;
 			if($q->sumber == 'Syahriyah')
 			{
 				$sumbere = '1';
@@ -132,13 +141,18 @@ elseif($aksi == 'ubah')
 			}
 			else
 			{
-				$sumbere = '';
+				$ta = $this->db->query("select * from `m_penerimaan` where `macam_penerimaan`='$macam_penerimaan'");
+				foreach($ta->result() as $data )
+				{
+					$sumbere = $data->nomor;
+				}
 			}
+
 		?>
 		<div class="form-group row"><div class="col-sm-3"><label class="control-label">Sumber Dana Operasional</label></div>
 		<div class="col-sm-9"><select name="sumber" id="provinsi" class="form-control" required>
 		<?php
-		echo '<option value="'.$sumbere.'">'.$q->sumber.'</option>
+		echo '<option value="'.$sumbere.'">'.$macam_penerimaan.'</option>
 		<option value="1">Syahriyah</option><option value="2">dpm</option><option value="3">Infaq/jariyah</option>';
 		?>
 		</select></div>

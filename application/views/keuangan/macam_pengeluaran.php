@@ -37,6 +37,12 @@ if (empty($kd))
 	{
 		echo '<option value="'.$dsumber->nama.'">'.$dsumber->nama.'</option>';
 	}
+	$query2 = $this->db->query("select * from `m_penerimaan` order by `macam_penerimaan`");
+	foreach($query2->result() as $dsumber)
+	{
+		echo '<option value="'.$dsumber->macam_penerimaan.'">'.$dsumber->macam_penerimaan.'</option>';
+	}
+	
 	?>
 	</select></div>
 </div>
@@ -62,6 +68,12 @@ else
 	{
 		echo '<option value="'.$dsumber->nama.'">'.$dsumber->nama.'</option>';
 	}
+	$query2 = $this->db->query("select * from `m_penerimaan` order by `macam_penerimaan`");
+	foreach($query2->result() as $dsumber)
+	{
+		echo '<option value="'.$dsumber->macam_penerimaan.'">'.$dsumber->macam_penerimaan.'</option>';
+	}
+
 	?>
 	</select></div>
 </div>

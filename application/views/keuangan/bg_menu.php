@@ -36,6 +36,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Referensi <b class="caret"></b></a>
                         <ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/macam">Macam Pembayaran</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/macampenerimaan">Macam Penerimaan Nonsiswa</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/set">Besar Pembayaran</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/macampengeluaran">Macam Pengeluaran</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/macamnonkomite">Macam Tunggakan Nonkomite</a></li>
@@ -54,6 +55,8 @@
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/pembayaran">Rekapitulasi Pembayaran Harian</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/keluar">Pengeluaran</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/pengeluaran">Rekapitulasi Pengeluaran</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>keuangan/entrypenerimaan">Penerimaan</a></li>
+
 			</ul>
 			</li>
                 	<li class="nav-item dropdown">
