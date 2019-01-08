@@ -154,7 +154,7 @@ class Keuangan extends CI_Controller {
 		$this->load->view('keuangan/bg_menu',$data);
 		$this->load->view('keuangan/laporan',$data);
 		$this->load->view('shared/bawah');
-	}	
+	}
 	function macam($kd=null)
 	{
 		$data["nim"]=$this->session->userdata('username');
@@ -164,20 +164,20 @@ class Keuangan extends CI_Controller {
 		$data["query"]=$this->Keuangan_model->Daftar_Macam_Pembayaran();
 		$macampembayaran = '';
 		$statusdigunakan='1';
-		$nomor_urut='';
+		$nomor='';
 		$querya=$this->Keuangan_model->Macam_Pembayaran($kd);
 		foreach($querya->result() as $mp)
 		{$macampembayaran=$mp->nama;
 		 $statusdigunakan=$mp->status;
-		$nomor_urut = $mp->nomor_urut;
+		$nomor = $mp->nomor;
 		}
 		$data["macampembayaran"]=$macampembayaran;
 		$data["statusdigunakan"]=$statusdigunakan;
-		$data["nomor_urut"]=$nomor_urut;
+		$data["nomor"]=$nomor;
 		$data["kd"]=$kd;
 		$in=array();
 		$in["nama"] = $this->input->post('nama');
-		$in["nomor_urut"] = $this->input->post('nomor_urut');
+		$in["nomor"] = $this->input->post('nomor');
 		$in["status"] = $this->input->post('statusdigunakan');
 		$in["kd"]=$this->input->post('kd');
 		if ((!empty($in["nama"])) and (!empty($in["status"])))
@@ -1304,7 +1304,14 @@ class Keuangan extends CI_Controller {
 		{
 			$sumbere = '';
 		}
-
+		if($sumber > 3)
+		{
+			$ta = $this->db->query("select * from `m_penerimaan` where `nomor`='$sumber'");
+			foreach($ta->result() as $data )
+			{
+				$sumbere = $data->macam_penerimaan;
+			}
+		}
 		$this->load->model('Keuangan_model');
 		echo $this->Keuangan_model->Pilih_Jenis_Pengeluaran($sumbere);
 		//redirect('dasdasdasd');
@@ -1341,6 +1348,15 @@ class Keuangan extends CI_Controller {
 			{
 				$sumbere = '';
 			}
+			if($sumber > 3)
+			{
+				$ta = $this->db->query("select * from `m_penerimaan` where `nomor`='$sumber'");
+				foreach($ta->result() as $data )
+				{
+					$sumbere = $data->macam_penerimaan;
+				}
+			}
+
 			$in['sumber'] = $sumbere;
 			$in['penerima'] = nopetik($this->input->post('penerima'));
 			$in['keterangan'] = nopetik($this->input->post('keterangan'));
@@ -1358,6 +1374,7 @@ class Keuangan extends CI_Controller {
 					$in['id_keluar'] = $id_keluar;
 					$this->Keuangan_model->Perbarui_Pengeluaran($in);
 				}
+				redirect('keuangan/keluar/tampil');
 			}
 
 		}
@@ -1658,6 +1675,71 @@ class Keuangan extends CI_Controller {
 		$thnajaran = $tahun1.'/'.$tahun2;
 		redirect('keuangan/terima/'.$nis.'/'.$tahun1.'/'.$semester);
 	}
+	function macampenerimaan($nomor=null)
+	{
+		$data["nim"]=$this->session->userdata('username');
+		$data["judulhalaman"] = 'Data Induk Macam Penerimaan Non Pembayaran Siswa';
+		$data["status"]=$this->session->userdata('tanda');
+		$macam_penerimaan =  hilangkanpetik($this->input->post('macam_penerimaan'));
+		$data['nomor'] = $nomor;
+		$post_nomor =  hilangkanpetik($this->input->post('nomor'));
+		if ((!empty($macam_penerimaan)) and (!empty($post_nomor)))
+		{
+			$ta = $this->db->query("select * from `m_penerimaan` where `nomor`='$post_nomor'");
+			if($ta->num_rows() == 0)
+			{
+				$this->db->query("insert into `m_penerimaan` (`macam_penerimaan`, `nomor`) values ('$macam_penerimaan', '$post_nomor')");
+			}
+			redirect('keuangan/macampenerimaan');
+		}
+		elseif ((!empty($macam_penerimaan)) and (!empty($nomor)))
+		{
+			$this->db->query("update `m_penerimaan` set `macam_penerimaan` = '$macam_penerimaan' where `nomor`='$nomor'");
+			redirect('keuangan/macampenerimaan');
+		}
+
+		else
+		{
+			$this->load->view('keuangan/bg_atas',$data);
+			$this->load->view('keuangan/bg_menu',$data);
+			$this->load->view('keuangan/macam_penerimaan',$data);
+			$this->load->view('shared/bawah');	
+		}
+	}
+	function entrypenerimaan($id=null)
+	{
+		$data["nim"]=$this->session->userdata('username');
+		$data["judulhalaman"] = 'Daftar Penerimaan Non Pembayaran Siswa';
+		$data["status"]=$this->session->userdata('tanda');
+		$data["id"]=$id;
+		$besar =  hilangkanpetik($this->input->post('besar'));
+		$besar = preg_replace("/ /","", $besar);
+		$besar = preg_replace("/Rp/","", $besar);
+		$besar = preg_replace("/\./","", $besar);
+		$tanggal = $this->input->post('tanggal');
+		$tanggal = tanggal_indonesia_ke_barat($tanggal);
+		$id_m_penerimaan =  hilangkanpetik($this->input->post('id_m_penerimaan'));
+		if ($besar>0)
+		{
+			if(empty($id))
+			{
+				$this->db->query("insert into `penerimaan` (`besar`, `tanggal`, `id_m_penerimaan`) values ('$besar', '$tanggal', '$id_m_penerimaan')");
+			}
+			else
+			{
+				$this->db->query("update `penerimaan` set `besar` = '$besar', `tanggal` = '$tanggal', `id_m_penerimaan` = '$id_m_penerimaan' where `id`='$id'");
+			}
+			redirect('keuangan/entrypenerimaan');
+		}
+		else
+		{
+			$this->load->view('keuangan/bg_atas',$data);
+			$this->load->view('keuangan/bg_menu',$data);
+			$this->load->view('keuangan/entry_penerimaan',$data);
+			$this->load->view('shared/bawah');	
+		}
+	}	
+
 }//akhir fungsi
 
 ?>

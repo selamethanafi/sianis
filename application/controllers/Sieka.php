@@ -174,7 +174,7 @@ class Sieka extends CI_Controller
 		redirect('sieka/bulanan');
 
 	}
-	function harian()
+	function harian($thn=null,$bln=null,$tgl=null)
 	{
 		$data["nim"]=$this->session->userdata('username');
 		$data["judulhalaman"]= 'Daftar Kegiatan Harian';
@@ -182,6 +182,10 @@ class Sieka extends CI_Controller
 		$this->load->helper('pkg');
 		$data["tahunpenilaian"]=cari_tahun_penilaian();
 		$data['nip']=$this->sieka->get_NIP($data["nim"]);
+		$data['thn'] = $thn;
+		$data['bln'] = $bln;
+		$data['tgl'] = $tgl;
+		$data['loncat'] = '';
 		$this->load->view('guru/bg_atas',$data);
 		$this->load->view('sieka/harian',$data);
 		$this->load->view('shared/bawah');
