@@ -66,19 +66,19 @@ if (count($query->result())>0)
 	{
 		$sltp = strtoupper(substr($t->sltp,0,1));
 		?>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nomor Induk Siswa</label></div>
 			<div class="col-sm-9"><?php echo $t->nis;?>
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nama</label></div>
 			<div class="col-sm-9" ><input type="text" name="nama" value="<?php echo $t->nama;?>" class="form-control">
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Tempat Lahir</label></div>
 			<div class="col-sm-9" ><input type="text" name="tmpt" value="<?php echo $t->tmpt;?>" class="form-control">
 		</div></div>
-		<div class="form-group row row"><div class="col-sm-3"><label class="control-label">Tanggal lahir</label></div>
+		<div class="form-group row"><div class="col-sm-3"><label class="control-label">Tanggal lahir</label></div>
 			<div class="col-sm-9" >
 			<?php
 			$str = $t->tgllhr;	
@@ -86,11 +86,11 @@ if (count($query->result())>0)
 			?>
 			<input type="text" name="tgllhr" value="<?php echo $tgllhr;?>" id="tanggallahirsiswa" class="form-control">
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nama Orang Tua</label></div>
 			<div class="col-sm-9" ><input type="text" name="nmortu" value="<?php echo $t->nmortu;?>" class="form-control">
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">NIS Nasional</label></div>
 			<?php
 			$nisn = $t->nisn;
@@ -107,7 +107,7 @@ if (count($query->result())>0)
 
 			
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nomor Peserta Ujian SLTP</label></div>
 			<div class="col-sm-9" >
 			<?php
@@ -125,7 +125,7 @@ if (count($query->result())>0)
 			}
 			?>
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nomor Blanko SKHUN</label></div>
 			<div class="col-sm-9" >
 			<?php
@@ -145,11 +145,11 @@ if (count($query->result())>0)
 			<input type="text" name="no_blanko_skhun2" value="<?php echo $noblanko2;?>" id="noblankoskhun2"  class="form-control" placeholder="untuk lulusan 2016 dst">
 		</div></div>
 
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">SLTP Asal</label></div>
 			<div class="col-sm-9" ><input type="text" name="sltp" value="<?php echo $t->sltp;?>" class="form-control">
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Nomor Ijazah SLTP</label></div>
 			<div class="col-sm-9">
 			<?php
@@ -195,13 +195,13 @@ if (count($query->result())>0)
 			}
 			?>
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">NPSN SLTP/MTS/Paket B</label></div>
 			<div class="col-sm-9" >
 			<input type="text" name="npsn_sltp" value="<?php echo $t->npsn_sltp;?>" class="form-control">
 		</div></div>
 
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Tanggal Ijazah</label></div>
 			<div class="col-sm-9" >
 			<?php
@@ -210,7 +210,7 @@ if (count($query->result())>0)
 			?>
 			<input type="text" name="tglsttb" value="<?php echo $tglsttb;?>" id="tanggalijazah" class="form-control">
 		</div></div>
-		<div class="form-group row row">
+		<div class="form-group row">
 			<div class="col-sm-3"><label class="control-label">Berdasar ijazah</label></div>
 			<div class="col-sm-9" >
 			<?php
