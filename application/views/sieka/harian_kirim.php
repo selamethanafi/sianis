@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas 		: skp.php
-// Lokasi      		: application/views/guru/
-// Terakhir diperbarui	: Rab 01 Jul 2015 09:56:09 WIB 
+// Nama Berkas 		: harian_kirim.php
+// Lokasi      		: application/views/sieka/
+// Terakhir diperbarui	: Sen 07 Jan 2019 20:10:40 WIB  
 // Author      		: Selamet Hanafi
 //
 // (c) Copyright:
@@ -41,12 +41,18 @@ if($ta->num_rows() > 0)
 	$tanggal = substr($a->tanggal,8,2);
 	$bulan = substr($a->tanggal,5,2);
 	$tahun = substr($a->tanggal,0,4);
+	$jtm = $a->kuantitas;
+	$satuan = 'dokumen';
+	if(substr($a->kegiatan,0,5) == 'melak')
+	{
+		$satuan = 'jam tatap muka';
+	}
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kegiatan</label></div><div class="col-sm-9"><input type="hidden" name ="nama_kegiatan" value = "'.$a->kegiatan.'" class="form-control">'.$a->kegiatan.'</div></div>';
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Tanggal</label></div><div class="col-sm-3"><input type="text" name="tanggal" value = "'.$tanggal.'" class="form-control"></div><div class="col-sm-3"><input type="text" name="bulan" value = "'.$bulan.'" class="form-control"></div><div class="col-sm-3"><input type="text" name="tahun" value = "'.$tahun.'" class="form-control"></div></div>';
-	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kuantitas</label></div><div class="col-sm-9"><input type="text" name ="kuantitas" value = "1" class="form-control"></div></div>';
-	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Satuan</label></div><div class="col-sm-9"><input type="text" name ="satuan" value = "kegiatan" class="form-control"></div></div>';
-	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Klasifikasi Tahunan</label></div><div class="col-sm-9"><input type="text" name ="klasifikasi" value = "'.$id_tahunan.'" class="form-control"></div></div>';
-	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Klasifikasi Bulanan</label></div><div class="col-sm-9"><input type="text" name ="klasifikasi_bulanan" value = "'.$a->id_bulanan.'" class="form-control"></div></div>';
+	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kuantitas</label></div><div class="col-sm-9"><input type="text" name ="kuantitas" value = "'.$jtm.'" class="form-control"></div></div>';
+	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Satuan</label></div><div class="col-sm-9"><input type="text" name ="satuan" value = "'.$satuan.'" class="form-control"></div></div>';
+	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Klasifikasi Tahunan</label></div><div class="col-sm-9"><input type="text" name ="klasifikasi" value = "'.$id_tahunan.'" class="form-control" readonly></div></div>';
+	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Klasifikasi Bulanan</label></div><div class="col-sm-9"><input type="text" name ="klasifikasi_bulanan" value = "'.$a->id_bulanan.'" class="form-control" readonly></div></div>';
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Jam Mulai</label></div><div class="col-sm-9">
 <select name="jam_mulai">
 	<option value="'.$a->jam_mulai.'">'.$a->jam_mulai.'</option>
