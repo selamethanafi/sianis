@@ -83,12 +83,8 @@ if($ada>0)
 
 
 	?>
-Tahun Pelajaran <?php echo $thnajaran;?><br />
-Semester <?php echo $semester;?><br />
-Kelas <?php echo $kelas;?><br />
-Mata Pelajaran <?php echo $mapel;?><br />
-Kode Kelas ARD <?php echo $school_class_id;?><br />
-Kode Mapel ARD <?php echo $subjects_value;?><br />
+Tahun Pelajaran <?php echo $thnajaran;?> Semester <?php echo $semester;?> Kelas <?php echo $kelas;?> Mata Pelajaran <?php echo $mapel;?><br />
+Kode Kelas ARD <?php echo $school_class_id;?> Kode Mapel ARD <?php echo $subjects_value;?><br />
 
 	<div class="table-responsive">
 	<table class="table table-striped table-hover table-bordered"><thead>

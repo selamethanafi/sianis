@@ -259,7 +259,7 @@ if(!empty($id_mapel))
 {
 	echo form_open_multipart('sinkronard/prosesunggahnilai/'.$id_mapel,'class="form-horizontal" role="form"');?>
 format csv
-<p>"nis","nama","ph1","ph2","ph3","ph4","ph5","ph6","ph7","ph8","ph9","ph10","pas","pengetahuan","predikat_pengetahuan","deskripsi_pengetahuan","keterampilan","predikat_keterampilan","deskripsi_keterampilan"</p>
+<p>"nis","nama","ph1","ph2","ph3","ph4","ph5","ph6","ph7","ph8","ph9","ph10","pas","pengetahuan","predikat_pengetahuan","deskripsi_pengetahuan","praktik","proyek","portofolio","keterampilan","predikat_keterampilan","deskripsi_keterampilan"</p>
 <div class="form-group row"><div class="col-sm-3"><label class="control-label">Berkas</label></div><div class="col-sm-9"><p class="form-control-static"><input type="file" name="userfile" class="textfield"></p></div></div>
 <p class="text-center"><input type="hidden" name="subjects_value_id" value="<?php echo $subjects_value_id;?>"><input type="hidden" name="mapel" value="<?php echo $mapele;?>"><input type="hidden" name="kelas" value="<?php echo $kelase;?>"><input type="submit" value="Unggah Berkas" class="btn btn-primary"></p></form>
 <?php
