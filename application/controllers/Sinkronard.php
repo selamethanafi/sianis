@@ -173,8 +173,16 @@ class Sinkronard extends CI_Controller
 		$config['overwrite'] = TRUE;	
 		$config['file_name'] = 'nilai_siswa.csv';
 		$this->load->library('upload', $config);
-		$thnajaran = cari_thnajaran();
-		$semester = cari_semester();
+		$tmapel = $this->db->query("select * from `m_mapel` where `id_mapel`='$id_mapel'");
+		if($tmapel->num_rows() == 0)
+		{
+			redirect('admin/mapel_tidak_ada');
+		}
+		foreach($tmapel->result() as $dtmapel)
+		{
+				$thnajaran = $dtmapel->thnajaran;
+				$semester = $dtmapel->semester;
+		}
 		$mapel=nopetik($this->input->post('mapel'));
 		$subjects_value=nopetik($this->input->post('subjects_value_id'));
 		$this->db->query("update `m_mapel` set `subjects_value`='$subjects_value' where `id_mapel`='$id_mapel'");
@@ -204,7 +212,6 @@ class Sinkronard extends CI_Controller
 						$pesan .= ' nis';
 						$nis = '';
 					}
-					$username = $field["nis"];			
 					if(isset($field['pengetahuan']))
 					{
 						$kog = nopetik($field['pengetahuan']);
@@ -355,9 +362,41 @@ class Sinkronard extends CI_Controller
 						$pesan .= ' pas';
 						$nilai_uas = '';
 					}
+					if(isset($field['praktik']))
+					{
+						$p1 = nopetik($field['praktik']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' praktik';
+						$p1 = '';
+					}
+					if(isset($field['portofolio']))
+					{
+						$p2 = nopetik($field['portofolio']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' portofolio';
+						$p2 = '';
+					}
+					if(isset($field['proyek']))
+					{
+						$p3 = nopetik($field['proyek']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' proyek';
+						$p3 = '';
+					}
+
+
 					if ($adagalat==0)
 					{
-						$this->db->query("update `nilai` set `kog`='$kog', `psi`='$psi', `deskripsi`='$deskripsi', `keterangan`='$keterangan', `nilai_uh1` = '$nilai_uh1', `nilai_uh2` = '$nilai_uh2', `nilai_uh3` = '$nilai_uh3', `nilai_uh4` = '$nilai_uh4', `nilai_uh5` = '$nilai_uh5', `nilai_uh6` = '$nilai_uh6', `nilai_uh7` = '$nilai_uh7', `nilai_uh8` = '$nilai_uh8', `nilai_uh9` = '$nilai_uh9', `nilai_uh10` = '$nilai_uh10', `nilai_uas`='$nilai_uas' where `thnajaran`='$thnajaran' and `semester`='$semester' and `nis`='$nis' and `mapel`='$mapel'");
+						$this->db->query("update `nilai` set `kog`='$kog', `psi`='$psi', `deskripsi`='$deskripsi', `keterangan`='$keterangan', `nilai_uh1` = '$nilai_uh1', `nilai_uh2` = '$nilai_uh2', `nilai_uh3` = '$nilai_uh3', `nilai_uh4` = '$nilai_uh4', `nilai_uh5` = '$nilai_uh5', `nilai_uh6` = '$nilai_uh6', `nilai_uh7` = '$nilai_uh7', `nilai_uh8` = '$nilai_uh8', `nilai_uh9` = '$nilai_uh9', `nilai_uh10` = '$nilai_uh10', `nilai_uas`='$nilai_uas', `p1`='$p1', `p2`='$p2', `p3`='$p3' where `thnajaran`='$thnajaran' and `semester`='$semester' and `nis`='$nis' and `mapel`='$mapel'");
 					}
 					$pesan .= ' TIDAK ADA<br />';
 					$n++;

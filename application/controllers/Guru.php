@@ -921,6 +921,7 @@ class Guru extends CI_Controller
 				if (($bobot_kuis+$bobot_ulangan_harian+$bobot_tugas+$bobot_mid+$bobot_semester)>0 and ($bobot_kuis+$bobot_ulangan_harian+$bobot_tugas+$bobot_mid+$bobot_semester)<101)
 				{
 					$nilai_na = (($in["nilai_rku"]*$bobot_kuis)+($in["nilai_ruh"]*$bobot_ulangan_harian) + ($in["nilai_rtu"]*$bobot_tugas) + ($in["nilai_mid"]*$bobot_mid) + ($in["nilai_uas"]*$bobot_semester))/100;
+
 				}
 				$nilai_na = round($nilai_na,0);
 				if($jujug == 'T')
@@ -9992,10 +9993,12 @@ $data["kodeguru"] = $data["nim"];
 				}
 				if ($itemnilai=='7')
 				{
+					$nilai = $this->input->post("nilai_midf_$i");
 					$namaitem = 'hasil penilaian tengah semester';
 				}
 				if ($itemnilai=='8')
 				{
+					$nilai = $this->input->post("nilai_uas_$i");
 					if($semester == 1)
 					{
 						$namaitem = 'hasil penilaian akhir semester';
