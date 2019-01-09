@@ -111,7 +111,15 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh1.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh1.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh1 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh1.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh1.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh1.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+
 			}
 			if($t->nilai_uh2>100)
 			{
@@ -120,7 +128,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh2.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh2.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh2 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh2.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh2.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh2.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh3>100)
 			{
@@ -129,7 +144,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh3.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh3.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh3 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh3.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh3.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh3.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh4>100)
 			{
@@ -138,7 +160,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh4.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh4.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh4 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh4.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh4.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh4.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh5>100)
 			{
@@ -147,7 +176,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh5.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh5.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh5 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh5.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh5.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh5.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh6>100)
 			{
@@ -156,7 +192,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh6.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh6.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh6 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh6.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh6.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh6.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh7>100)
 			{
@@ -165,7 +208,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh7.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh7.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh7 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh7.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh7.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh7.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh8>100)
 			{
@@ -174,7 +224,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh8.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh8.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh8 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh8.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh8.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh8.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh9>100)
 			{
@@ -183,7 +240,14 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh9.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh9.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh9 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh9.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh9.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh9.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
 			if($t->nilai_uh10>100)
 			{
@@ -192,9 +256,16 @@ if(count($query->result())>0)
 			}
 			else
 			{
-				echo '<td align="center">'.$t->nilai_uh10.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh10.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				if($t->nilai_uh10 > 0)
+				{
+					echo '<td align="center">'.$t->nilai_uh10.'<input type="hidden" class="form-control" name="value_daily_score[]" value="'.$t->nilai_uh10.'" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
+				else
+				{
+					echo '<td align="center">'.$t->nilai_uh10.'<input type="hidden" class="form-control" name="value_daily_score[]" value="" /><input type="hidden" class="form-control" name="value_daily_remed[]" value="" /></td>';
+				}
 			}
-		echo '<td align="center">'.$t->kog.'<input type="hidden" name="student_id[]" value="'.$student_id.'" required /><input type="hidden" name="student_status[]" value="1" required /><input type="hidden" name="student_value[]" value="'.$t->student_value.'" required /></td>';
+		echo '<td align="center">'.$t->kog.'<input type="hidden" name="student_id[]" value="'.$student_id.'" required /><input type="hidden" name="student_status[]" value="" required /><input type="hidden" name="student_value[]" value="'.$t->student_value.'" required /></td>';
 		echo '</tr>';
 		}
 		else
