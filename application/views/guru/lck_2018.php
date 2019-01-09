@@ -15,6 +15,9 @@
 //============================================================+
 ?>
 <?php
+$thnajaranskr = cari_thnajaran();
+$semesterskr = cari_semester();
+
 $tingkat = kelas_jadi_tingkat($kelas);
 $ranah = 'KP';
 if($kkm_mid == 0)
@@ -26,8 +29,15 @@ if($kkm_mid == 0)
 <div class="card">
 <div class="card-header"><h3><?php echo $judulhalaman;?> Versi 2018</h3></div>
 <div class="card-body">
-<p><a href="<?php echo base_url(); ?>guru/nilai" class="btn btn-info"><span class="fa fa-arrow-left"></span> <b>Kelas Lain</b></a> 
 <?php
+if(($thnajaran != $thnajaranskr) or ($semester != $semesterskr))
+{
+	echo '<p><a href="'.base_url().'guru/nilailama" class="btn btn-info"><span class="fa fa-arrow-left"></span> <b>Kelas Lain</b></a> ';
+}
+else
+{
+	echo '<p><a href="'.base_url().'guru/nilai" class="btn btn-info"><span class="fa fa-arrow-left"></span> <b>Kelas Lain</b></a> ';
+}
 echo ' <a href="'.base_url().'guru/psikomotor" class="btn btn-info"><b>Nilai Keterampilan</b></a>';
 echo '</p>';
 if ($jenis_deskripsi==1)

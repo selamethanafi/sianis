@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
+// Dimutakhirkan	: Rab 09 Jan 2019 19:03:00 WIB 
 // Nama Berkas 		: status_ketuntasan.php
 // Lokasi      		: application/views/guru
 // Author      		: Selamet Hanafi
@@ -212,7 +213,7 @@ if(($id <= $total_siswa) and ($total_siswa > 0))
 			if($jenis_deskripsi==6)
 			{
 				$ket26 = '????';
-				if($kurikulum == '2018')
+				if($kurikulum > 2015)
 				{
 					if($kog < $kkm)
 					{
@@ -256,7 +257,7 @@ if(($id <= $total_siswa) and ($total_siswa > 0))
 						$ket26 = 'sudah tuntas';
 					}
 				}
-				$predikatkog = deskripsi_nilai_2018($kog,$kkm);
+				$predikatkog = predikat_deskripsi_nilai_2018($kog,$kkm);
 /*
 				if($k
 				{

@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
+// Dimutakhirkan	: Rab 09 Jan 2019 19:03:29 WIB 
 // Nama Berkas 		: status_ketuntasan.php
 // Lokasi      		: application/views/guru
 // Author      		: Selamet Hanafi
@@ -22,7 +23,10 @@
 <?php
 echo '<h2>Mohon bersabar</h2>';
 $kurikulum = cari_kurikulum($thnajaran,$semester,$kelas);
-if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
+$batas_sangat_baik = batas_sangat_baik($kkm);
+$batas_baik = batas_baik($kkm);
+
+if($kurikulum > 2012)
 {
 	if($id <= $total_siswa)
 	{
@@ -69,20 +73,21 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 		$sangatbaik = '';
 		$baik = '';
 		$cukup = '';
+		$kurang = '';
 		$item = 1;
 		if($jenis_deskripsi == 6)
 		{
-			if($psi>=90)
+			if($psi>=$batas_sangat_baik)
 			{
 				$ketpsi = 'Capaian kompetensi sudah tuntas dengan predikat sangat baik';
 			}
-			elseif($psi>=76)
+			elseif($psi>=$batas_baik)
 			{
 				$ketpsi = 'Capaian kompetensi sudah tuntas dengan predikat baik';
 			}
 			elseif($psi>=$kkm)
 			{
-				$ketpsi = 'Capaian kompetensi sudah tuntas dengan cukup';
+				$ketpsi = 'Capaian kompetensi sudah tuntas dengan predikat cukup';
 			}
 			else
 			{
@@ -101,7 +106,7 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 				{
 					if($jenis_deskripsi == 6)
 					{
-						if($f->$aspek>=86)
+						if($f->$aspek>=$batas_sangat_baik)
 						{
 							if(empty($sangatbaik))
 							{
@@ -112,7 +117,7 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 								$sangatbaik .= ', '.$p[$item];
 							}
 						}
-						elseif($f->$aspek>=$kkm)
+						elseif($f->$aspek>=$batas_baik)
 						{
 							if(empty($baik))
 							{
@@ -123,7 +128,7 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 								$baik .= ', '.$p[$item];
 							}
 						}
-						else
+						elseif($f->$aspek>=$kkm)
 						{
 							if(empty($cukup))
 							{
@@ -132,6 +137,18 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 							else
 							{
 								$cukup .= ', '.$p[$item];
+							}
+						}
+
+						else
+						{
+							if(empty($kurang))
+							{
+								$kurang .= $p[$item];
+							}
+							else
+							{
+								$kurang .= ', '.$p[$item];
 							}
 						}
 					}
@@ -185,11 +202,23 @@ if(($kurikulum == '2013') or ($kurikulum == '2015') or ($kurikulum == '2018'))
 			{
 				if(empty($ketpsi))
 				{
-					$ketpsi .= 'Dengan bimbingan lebih, Ananda akan dapat meningkatkan kemampuan dalam '.$cukup;
+					$ketpsi .= 'Ananda cukup baik dalam '.$cukup;
 				}
 				else
 				{
-					$ketpsi .= '. Dengan bimbingan lebih, Ananda akan dapat meningkatkan kemampuan dalam '.$cukup;			
+					$ketpsi .= '. Ananda cukup baik dalam '.$cukup;
+				}
+			}
+
+			if(!empty($kurang))
+			{
+				if(empty($ketpsi))
+				{
+					$ketpsi .= 'Dengan bimbingan lebih, Ananda akan dapat meningkatkan kemampuan dalam '.$kurang;
+				}
+				else
+				{
+					$ketpsi .= '. Dengan bimbingan lebih, Ananda akan dapat meningkatkan kemampuan dalam '.$kurang;			
 				}
 			}
 			$ketpsi = ucfirst(hilangkanpetik($ketpsi));
