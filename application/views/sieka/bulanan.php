@@ -16,6 +16,85 @@
 //============================================================+
 ?><div class="container-fluid"><h2>Modul Kegiatan Bulanan SiEka</h2>
 <?php
+$ta = $this->db->query("select * from `skp_skor_guru` where `kegiatan` like '%Membimbing siswa dalam kegiatan ekstrakurikuler%' and `tahun`='$tahunpenilaian' and `nip`='$nip'");
+if($ta->num_rows() > 0)
+{
+	$kegiatan = 'menyusun program pembimbingan ekstrakurikuler di bulan Januari '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Januari '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Februari '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Maret '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan April '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Mei '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'menyusun program pembimbingan ekstrakurikuler di bulan Juli '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Juli '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Agustus '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan September '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan Oktober '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+	$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan November '.$tahunpenilaian;
+	$ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+	if($ta->num_rows() == 0)
+	{
+		$this->db->query("insert into `sieka_bulanan` (`tahun`,`nip`,`kegiatan`) values ('$tahunpenilaian', '$nip', '$kegiatan')");
+	}
+
+
+
+}
 $kegiatan = 'menyusun kurikulum, silabus atau rencana pelaksanaan pembelajaran di bulan Januari '.$tahunpenilaian;
 $ta = $this->db->query("select * from `sieka_bulanan` where `tahun`='$tahunpenilaian' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
 if($ta->num_rows() == 0)

@@ -77,7 +77,7 @@ foreach($ta->result() as $a)
 	$nomor++;
 }
 echo '</table>';
-		echo '<p class="text-center"><input type="submit" value="Simpan" class="btn btn-primary"></p>';
+		echo '<p class="text-center"><input type="hidden" value="'.$nomor.'" name="cacah"><input type="submit" value="Simpan" class="btn btn-primary"></p>';
 }
 else
 {
