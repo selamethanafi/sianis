@@ -45,7 +45,7 @@ class Tukardata extends CI_Controller {
 			}
 		}
 	}
-	function harian()
+	function harian($token=null)
 	{
 		$this->load->helper('fungsi');
 		$this->load->helper('telegram');
@@ -53,7 +53,9 @@ class Tukardata extends CI_Controller {
 		$token = $this->uri->segment(3);
 		if($token == $ttd)
 		{
-			$this->load->view('tukardata/harian');
+			$this->load->model('Referensi_model','ref');
+			$data['token_bot'] = $this->ref->ambil_nilai('token_bot');
+			$this->load->view('tukardata/harian',$data);
 		}
 	}
 	function piket()
