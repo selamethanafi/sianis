@@ -42,11 +42,16 @@ if($ta->num_rows() > 0)
 	$bulan = substr($a->tanggal,5,2);
 	$tahun = substr($a->tanggal,0,4);
 	$jtm = $a->kuantitas;
-	$satuan = 'dokumen';
+	$satuan = $a->satuan;
 	if(substr($a->kegiatan,0,5) == 'melak')
 	{
 		$satuan = 'jam tatap muka';
 	}
+	if(substr($a->kegiatan,0,5) == 'menyu')
+	{
+		$satuan = 'Dokumen';
+	}
+
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kegiatan</label></div><div class="col-sm-9"><input type="hidden" name ="nama_kegiatan" value = "'.$a->kegiatan.'" class="form-control">'.$a->kegiatan.'</div></div>';
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Tanggal</label></div><div class="col-sm-3"><input type="text" name="tanggal" value = "'.$tanggal.'" class="form-control"></div><div class="col-sm-3"><input type="text" name="bulan" value = "'.$bulan.'" class="form-control"></div><div class="col-sm-3"><input type="text" name="tahun" value = "'.$tahun.'" class="form-control"></div></div>';
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kuantitas</label></div><div class="col-sm-9"><input type="text" name ="kuantitas" value = "'.$jtm.'" class="form-control"></div></div>';
