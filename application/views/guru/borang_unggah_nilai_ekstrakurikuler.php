@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Nama Berkas 		: nilai_remidi_unggah.php
+// Nama Berkas 		: borang_unggah_nilai_ekstrakurikuler.php
 // Lokasi      		: application/views/guru/
-// Terakhir diperbarui	: Jum 13 Mei 2016 10:52:16 WIB 
+// Terakhir diperbarui	: Kam 10 Jan 2019 20:57:54 WIB 
 // Author      		: Selamet Hanafi
 //
 // (c) Copyright:
@@ -33,20 +33,20 @@ if(!empty($sukses))
 ?>
 <?php
 $data = 0;
-$xloc = base_url().'ekstrakurikuler/proses';
+$xloc = base_url().'ekstrakurikuler/proses/'.substr($thnajaran,0,4).'/'.$semester;
 ?>
 <form class="form-horizontal" role="form" name="formx" enctype="multipart/form-data" method="post" action="<?php echo $xloc;?>">
-    <div class="form-group row row">
+    <div class="form-group row">
 	<div class="col-sm-3"><label for="thnajaran" class="control-label">Tahun Pelajaran</label></div>
 	<div class="col-sm-9"><p class="form-control-static"><?php echo $thnajaran;?></p>
         </div>
     </div>
-    <div class="form-group row row">
+    <div class="form-group row">
 	<div class="col-sm-3"><label for="semester" class="control-label">Semester</label></div>
 	<div class="col-sm-9"><p class="form-control-static"><?php echo $semester;?></p>
 	</div>
     </div>
-    <div class="form-group row row">
+    <div class="form-group row">
        <div class="col-sm-3"><label for="inputfile" class="control-label">Berkas</label></div>
        <div class="col-sm-9"><input type="file" name="userfile">
 	        <p class="help-block">Format Berkas CSV<br />"nis","nama","nama_ekstra","nilai","deskripsi"</p>

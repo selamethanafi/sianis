@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Lokasi      		: application/views/guru/
+// Dimutakhirkan	: Kam 10 Jan 2019 20:11:52 WIB 
+// Lokasi      		: application/views/ekstrakurikuler/
 // Nama Berkas 		: daftar_nilai_ekstrakurikuler.php
 // Author      		: Selamet Hanafi
 //
@@ -29,7 +30,7 @@ foreach($tekstra->result() as $dekstra)
 $wajib = 0;
 $thn1 = substr($thnajaran,0,4);
 ?>
-<?php echo form_open('guru/ekstrakurikuler/'.$thn1.'/'.$semester.'/'.$id_pengampu_ekstra, 'class="form-horizontal" role="form"');
+<?php echo form_open('ekstrakurikuler/ekstrakurikuler/'.$thn1.'/'.$semester.'/'.$id_pengampu_ekstra, 'class="form-horizontal" role="form"');
 if ($proses == 'oke')
 	{
 	$ta = $this->db->query("select * from ekstrakurikuler where thnajaran='$thnajaran' and semester='$semester' and nama_ekstra='$mapel' and `nis`='$nis'");
@@ -71,7 +72,7 @@ echo '<div class="form-group row row"><div class="col-sm-3"><label class="contro
 	echo '</select></div></div>';
 	echo '<div class="form-group row row"><div class="col-sm-3"><label class="control-label">Keterangan</label></div><div class="col-sm-9"><input type="text" name="keterangan" class="form-control"><input type="hidden" name="proses" value ="oke" ></div></div>';
 ?>
-<p class="text-center"><input type="submit" value="Simpan" class="btn btn-primary" role="button"> <a href="<?php echo base_url(); ?>guru/ekstrakurikuler" class="btn btn-info"><b>Kembali</b></a></p>
+<p class="text-center"><input type="submit" value="Simpan" class="btn btn-primary" role="button"> <a href="<?php echo base_url(); ?>ekstrakurikuler/ekstrakurikuler" class="btn btn-info"><b>Kembali</b></a></p>
 </form>
 <?php
 echo '<div class="alert alert-info"><p>Klik nama siswa untuk menghapus</p><p>Untuk menilai, bisa menggunakan borang (form) di atas atau bisa langsung menilai satu kelas dengan mengklik tautan Nilai atau Keterangan</p></div>';
@@ -79,7 +80,7 @@ $ada = count($tsisek->result());
 if($ada>0)
 {
 	echo '<table class="table table-hover table-striped table-bordered"><tr align="center"><td><strong>No.</strong></td><td><strong>NIS</strong></td><td><strong>Nama</strong></td><td>Kelas</td>';
-	echo '<td><a href="'.base_url().'guru/nilaiekstrakurikuler/'.$id_pengampu_ekstra.'/1" title="Ubah Nilai"><strong>Nilai</strong></a></td><td><a href="'.base_url().'guru/nilaiekstrakurikuler/'.$id_pengampu_ekstra.'/2" title="Ubah keterangan"><strong>Keterangan</strong></a></td></tr>';
+	echo '<td><a href="'.base_url().'ekstrakurikuler/nilaiekstrakurikuler/'.$id_pengampu_ekstra.'/1" title="Ubah Nilai"><strong>Nilai</strong></a></td><td><a href="'.base_url().'ekstrakurikuler/nilaiekstrakurikuler/'.$id_pengampu_ekstra.'/2" title="Ubah keterangan"><strong>Keterangan</strong></a></td></tr>';
 
 	foreach($tsisek->result() as $t)
 	{
@@ -88,7 +89,7 @@ if($ada>0)
 	echo "<tr><td align='center'>".$nomor."</td><td>".$nis."</td><td>";
 	if($wajib == 0)
 	{
-		echo "<a href='".base_url()."guru/ekstrakurikuler/".$thn1."/".$semester."/".$id_pengampu_ekstra."/hapus/".$t->id_siswa_ekstra."' onClick=\"return confirm('Anda yakin ingin menghapus nilai $namasiswa?')\" title='Hapus'>".$namasiswa."</a>";
+		echo "<a href='".base_url()."ekstrakurikuler/ekstrakurikuler/".$thn1."/".$semester."/".$id_pengampu_ekstra."/hapus/".$t->id_siswa_ekstra."' onClick=\"return confirm('Anda yakin ingin menghapus nilai $namasiswa?')\" title='Hapus'>".$namasiswa."</a>";
 	}
 	else
 	{
@@ -121,5 +122,5 @@ echo '<div class="alert alert-warning"><strong>Belum / tidak ada siswa mendaftar
 }
 ?>
 </table>
-<p class="text-center"><a href="<?php echo base_url(); ?>guru/cetakdaftarnilaiekstra/<?php echo $id_pengampu_ekstra;?>" class="btn btn-info"><span class="glyphicon glyphicon-print"></span> <b>Daftar Nilai</b></a></p>
+<p class="text-center"><a href="<?php echo base_url(); ?>ekstra/cetakdaftarnilaiekstra/<?php echo $id_pengampu_ekstra;?>" class="btn btn-info"><span class="fa fa-print"></span> <b>Daftar Nilai</b></a></p>
 </div></div></div>

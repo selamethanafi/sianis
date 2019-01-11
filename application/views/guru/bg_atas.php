@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //============================================================+
-// Dimutakhirkan	: Sab 14 Mei 2016 10:38:49 WIB 
+// Dimutakhirkan	: Kam 10 Jan 2019 20:01:34 WIB 
 // Nama Berkas 		: bg_atas.php
 // Lokasi      		: application/views/guru/
 // Author      		: Selamet Hanafi
@@ -152,7 +152,6 @@ if(!isset($adamenu))
 				<li><a class="dropdown-item dropdown-toggle" href="#">Tugas Tambahan</a>
 				   	<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="<?php echo base_url();?>guru/walikelas">Wali Kelas</a></li>
-					<li><a class="dropdown-item" href="<?php echo base_url();?>guru/ekstrakurikuler">Ekstrakurikuler</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>piket">Piket</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>piket/daftartugas">Tugas Siswa dari Guru</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>kepala">Kepala Madrasah</a></li>
@@ -169,6 +168,16 @@ if(!isset($adamenu))
 				<li><a class="dropdown-item" href="<?php echo base_url();?>guru/mencetakperangkat">Mencetak (baru)</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ekstrakurikuler
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<li><a class="dropdown-item" href="<?php echo base_url();?>ekstrakurikuler/ekstrakurikuler">Ekstrakurikuler</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>ekstrakurikuler/jurnal">Jurnal Ekstrakurikuler</a></li>
+
+			    </ul>
+			</li>
 			<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pribadi  <b class="caret"></b></a>
 
@@ -241,6 +250,7 @@ if(!isset($adamenu))
 
 			  	    <li><a class="dropdown-item" href="<?php echo base_url();?>sieka/tahunan"  title="Mengubah nomor ID kegiatan tautan">Tahunan</a></li>
 			  	    <li><a class="dropdown-item" href="<?php echo base_url();?>sieka/bulanan"  title="Mengubah nomor ID kegiatan tahunan">Bulanan</a></li>
+			  	    <li><a class="dropdown-item" href="<?php echo base_url();?>sieka/funggahkodebulanan"  title="Unggah kode bulanan dari Sieka">Unggah Kode Bulanan</a></li>
 			  	    <li><a class="dropdown-item" href="<?php echo base_url();?>sieka/harian"  title="Kirim kegiatan harian ke Sieka">Harian</a></li>
 			  	    <li><a class="dropdown-item" href="http://sieka.kemenag.go.id/kinerja"  title="Menampilkan laman Sieka" target="_blank">Laman Sieka</a></li>
 
