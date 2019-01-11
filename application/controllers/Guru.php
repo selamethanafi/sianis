@@ -5952,62 +5952,6 @@ class Guru extends CI_Controller
 				}
 
 	}
-	function ekstrakurikuler()
-	{
-		$data = array();
-		$data["nim"]=$this->session->userdata('username');
-		$data["nama"]=$this->session->userdata('nama');
-		$data["status"]=$this->session->userdata('tanda');
-		$data['judulhalaman'] = 'Nilai Ekstrakurikuler';
-		$data['loncat'] = '';
-		$thn1 = $this->uri->segment(3);
-		$thn2 = $thn1 + 1;
-		$thnajaran = $thn1.'/'.$thn2;
-		if(empty($thn1))
-		{
-			$thnajaran = cari_thnajaran();
-		}		
-		$semester= $this->uri->segment(4);
-		if(empty($semester))
-		{
-			$semester = cari_semester();
-		}
-		$id_pengampu_ekstra = $this->uri->segment(5);
-		$aksi = $this->uri->segment(6);
-		$id_siswa_ekstra = $this->uri->segment(7);
-		$this->load->model('Guru_model');
-		if($aksi == 'hapus')
-		{
-			$this->Guru_model->Hapus_Siswa_Ekstra($id_siswa_ekstra);
-			redirect('guru/ekstrakurikuler/'.$thn1.'/'.$semester.'/'.$id_pengampu_ekstra);
-		}
-		$kodeguru = $data["nim"];
-		$data['daftar_tapel']= $this->Guru_model->Tampilkan_Semua_Tahun();
-		$data["kodeguru"]=$kodeguru;
-		$data['id_pengampu_ekstra']=$id_pengampu_ekstra;
-		$data['proses'] = hilangkanpetik($this->input->post('proses'));
-		$data['thnajaran'] = $thnajaran;
-		$data['semester'] = $semester;
-		if ($data['proses']=='oke')
-			{
-			$data['nis'] = nopetik($this->input->post('nis'));
-			$data['nilai'] = nopetik($this->input->post('nilai'));
-			$data['keterangan'] = nopetik($this->input->post('keterangan'));
-			}
-		if((!empty($thn1)) and (!empty($semester)) and (!empty($id_pengampu_ekstra)))
-		{
-			$this->load->view('guru/bg_atas',$data);
-			$this->load->view('guru/daftar_nilai_ekstrakurikuler',$data);
-			$this->load->view('shared/bawah');
-
-		}
-		else
-		{
-			$this->load->view('guru/bg_atas',$data);
-			$this->load->view('guru/ekstrakurikuler',$data);
-			$this->load->view('shared/bawah');
-		}
-	}
 	function daftarnilaiekstra()
 	{
 		$data = array();

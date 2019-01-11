@@ -40,13 +40,21 @@ class Ekstrakurikuler extends CI_Controller
 	{
 		redirect('guru');
 	}
-	function borang()
+	function borang($thn1=null,$semester=null)
 	{
 		$nim=$this->session->userdata('username');
 		$this->load->model('Guru_model');
 		$kodeguru = $this->Guru_model->Idlink_Jadi_Kode_Guru($nim);	
-		$thnajaran = cari_thnajaran();
-		$semester = cari_semester();
+		$thn2 = $thn1 + 1;
+		$thnajaran = $thn1.'/'.$thn2;
+		if(empty($thn1))
+		{
+			$thnajaran = cari_thnajaran();
+		}
+		if(empty($semester))
+		{
+			$semester = cari_semester();
+		}
 		$tcacah = $this->Guru_model->Cek_Guru_Ekstra($thnajaran,$semester,$kodeguru);
 		$cacah = $tcacah->num_rows();
 		if($cacah == 0)
@@ -57,14 +65,14 @@ class Ekstrakurikuler extends CI_Controller
 		{
 			$data['judulhalaman'] = 'Borang Unggah Nilai Ekstrakurikuler';
 			$data['nim'] = $nim;
-			$data['thnajaran'] = cari_thnajaran();
-			$data['semester'] = cari_semester();
+			$data['thnajaran'] = $thnajaran;
+			$data['semester'] = $semester;
 			$this->load->view('guru/bg_atas',$data);
 			$this->load->view('guru/borang_unggah_nilai_ekstrakurikuler',$data);
 			$this->load->view('shared/bawah');
 		}
 	}
-	function proses()
+	function proses($thn1=null,$semester=null)
 	{
 		$input=array();
 		$data["nim"]=$this->session->userdata('username');
@@ -78,6 +86,17 @@ class Ekstrakurikuler extends CI_Controller
 		$this->load->library('upload', $config);
 		$datay['modul'] = 'Unggah Nilai Esktrakurikuler';
 		$datay['tautan_balik'] = ''.base_url().'ekstrakurikuler/borang';
+		$thn2 = $thn1 + 1;
+		$thnajaran = $thn1.'/'.$thn2;
+		if(empty($thn1))
+		{
+			$thnajaran = cari_thnajaran();
+		}
+		if(empty($semester))
+		{
+			$semester = cari_semester();
+		}
+
 		if(!empty($_FILES['userfile']['name']))
 		{
 			if(!$this->upload->do_upload())
@@ -92,8 +111,6 @@ class Ekstrakurikuler extends CI_Controller
 			}
 			else 
 			{
-				$thnajaran = cari_thnajaran();
-				$semester = cari_semester();
 				$pbk['thnajaran'] = $thnajaran;
 				$pbk['semester'] = $semester;
 				$filePath = 'uploads/'.$filename;
@@ -184,6 +201,134 @@ class Ekstrakurikuler extends CI_Controller
 			redirect('guru');
 		}
 	}//akhir fungsi proses impor nilai
+	function ekstrakurikuler($thn1=null,$semester=null,$id_pengampu_ekstra=null,$aksi=null,$id_siswa_ekstra=null)
+	{
+		$this->load->helper(array('form'));
+		$data = array();
+		$data["nim"]=$this->session->userdata('username');
+		$data["nama"]=$this->session->userdata('nama');
+		$data["status"]=$this->session->userdata('tanda');
+		$data['judulhalaman'] = 'Nilai Ekstrakurikuler';
+		$data['loncat'] = '';
+		$thn2 = $thn1 + 1;
+		$thnajaran = $thn1.'/'.$thn2;
+		if(empty($thn1))
+		{
+			$thnajaran = cari_thnajaran();
+		}
+		if(empty($semester))
+		{
+			$semester = cari_semester();
+		}
+		$this->load->model('Guru_model');
+		if($aksi == 'hapus')
+		{
+			$this->Guru_model->Hapus_Siswa_Ekstra($id_siswa_ekstra);
+			redirect('guru/ekstrakurikuler/'.$thn1.'/'.$semester.'/'.$id_pengampu_ekstra);
+		}
+		$kodeguru = $data["nim"];
+		$data['daftar_tapel']= $this->Guru_model->Tampilkan_Semua_Tahun();
+		$data["kodeguru"]=$kodeguru;
+		$data['id_pengampu_ekstra']=$id_pengampu_ekstra;
+		$data['proses'] = hilangkanpetik($this->input->post('proses'));
+		$data['thnajaran'] = $thnajaran;
+		$data['semester'] = $semester;
+		if ($data['proses']=='oke')
+			{
+			$data['nis'] = nopetik($this->input->post('nis'));
+			$data['nilai'] = nopetik($this->input->post('nilai'));
+			$data['keterangan'] = nopetik($this->input->post('keterangan'));
+			}
+		if((!empty($thn1)) and (!empty($semester)) and (!empty($id_pengampu_ekstra)))
+		{
+			$this->load->view('guru/bg_atas',$data);
+			$this->load->view('guru/daftar_nilai_ekstrakurikuler',$data);
+			$this->load->view('shared/bawah');
+
+		}
+		else
+		{
+			$this->load->view('guru/bg_atas',$data);
+			$this->load->view('guru/ekstrakurikuler',$data);
+			$this->load->view('shared/bawah');
+		}
+	}
+	function jurnal($thn1=null,$semester=null,$id_pengampu_ekstra=null,$aksi=null,$id=null)
+	{
+		$this->load->helper(array('form'));
+		$data = array();
+		$data["nim"]=$this->session->userdata('username');
+		$nim = $this->session->userdata('username');
+		$data["nama"]=$this->session->userdata('nama');
+		$data["status"]=$this->session->userdata('tanda');
+		$data['judulhalaman'] = 'Jurnal Ekstrakurikuler';
+		$data['loncat'] = '';
+		$thn2 = $thn1 + 1;
+		$thnajaran = $thn1.'/'.$thn2;
+		if(empty($thn1))
+		{
+			$thnajaran = cari_thnajaran();
+		}
+		if(empty($semester))
+		{
+			$semester = cari_semester();
+		}
+		$this->load->model('Guru_model');
+		if($aksi == 'hapus')
+		{
+			$this->db->query("delete from `jurnal_ekstrakurikuler` where `id`='$id' and `kodeguru`='$nim'");
+			redirect('ekstrakurikuler/jurnal/'.$thn1.'/'.$semester.'/'.$id_pengampu_ekstra);
+		}
+		$kodeguru = $data["nim"];
+		$data['daftar_tapel']= $this->Guru_model->Tampilkan_Semua_Tahun();
+		$data["kodeguru"]=$kodeguru;
+		$data['id_pengampu_ekstra']=$id_pengampu_ekstra;
+		$data['proses'] = hilangkanpetik($this->input->post('proses'));
+		$data['thnajaran'] = $thnajaran;
+		$data['semester'] = $semester;
+		if ($aksi=='baru')
+		{
+			$tanggal = $this->input->post('tanggal');
+			$tanggal = nopetik( tanggal_indonesia_ke_barat($tanggal));
+			$nama_ekstra = nopetik($this->input->post('nama_ekstra'));
+			$keterangan = nopetik($this->input->post('keterangan'));
+			$this->db->query("insert into `jurnal_ekstrakurikuler` (`thnajaran`, `semester`, `kodeguru`, `tanggal`, `keterangan`)  values ('$thnajaran', '$semester', '$nim', '$tanggal', '$keterangan')");
+			$aksi = '';
+			$x = substr($tanggal,0,4);
+			$y = substr($tanggal,5,2);
+			$z = substr($tanggal,8,2);
+			$bulan = angka_jadi_bulan($y);
+			$kegiatan = 'melaksanakan pembimbingan ekstrakurikuler di bulan '.$bulan.' '.$x;
+			$tc = $this->db->query("select * FROM `p_pegawai` where `kd`='$nim'");
+			$nip = '';
+			foreach($tc->result() as $c)
+			{
+				$nip = $c->nip;
+				$pns = $c->status_kepegawaian;
+			}
+			if(($pns == 'PNS') or ($pns == 'CPNS'))
+			{
+				$td = $this->db->query("select * from `sieka_bulanan` where `tahun`='$x' and `nip`='$nip' and `kegiatan` = '$kegiatan'");
+				$id_bulanan = '';
+				foreach($td->result() as $d)
+				{
+					$id_bulanan = $d->id_bulanan;
+				}
+				$tb = $this->db->query("select * FROM `sieka_harian` where `kegiatan`='$keterangan' and `tanggal`='$tanggal' and `nip`='$nip'");
+				if($tb->num_rows() == 0)
+				{
+					if(!empty($id_bulanan))
+					{
+						$this->db->query("insert into `sieka_harian` (`tahun`, `nip`, `kegiatan`, `tanggal`, `id_bulanan`, `jam_mulai`, `menit_mulai`, `jam_selesai`, `menit_selesai`, `kuantitas`, `satuan`) values ('$x','$nip', '$keterangan', '$tanggal', '$id_bulanan', '14', '30', '16', '00','2', 'jam tatap muka')");
+					}
+				}
+			}
+		}
+		$data['aksi'] = $aksi;
+		$this->load->view('guru/bg_atas',$data);
+		$this->load->view('guru/jurnal_ekstrakurikuler',$data);
+		$this->load->view('shared/bawah');
+	}
 
 /* akhir controller */
 }

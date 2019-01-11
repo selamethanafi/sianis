@@ -165,7 +165,8 @@ class Sieka extends CI_Controller
 	{
 		$data["nim"]=$this->session->userdata('username');
 		$nip=$this->sieka->get_NIP($data["nim"]);
-		for($i=1;$i<=6;$i++)
+		$cacah = hilangkanpetik($this->input->post("cacah"));
+		for($i=1;$i<$cacah;$i++)
 		{
 			$id_sieka_bulanan = hilangkanpetik($this->input->post("id_sieka_bulanan_$i"));
 			$id_bulanan = hilangkanpetik($this->input->post("id_bulanan_$i"));
