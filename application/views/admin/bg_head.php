@@ -146,6 +146,7 @@ if(!isset($adamenu))
 					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/walikelas">Unduh Kode Kelas</a></li>
 
 					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formnilai">Unggah Nilai</a></li>
+					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formdeskripsi">Unggah Deskripsi</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/formwalikelas">Unggah Catatan Walikelas</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiharian">Kirim Nilai Harian</a></li>
 					<li><a class="dropdown-item" href="<?php echo base_url();?>sinkronard/kirimnilaiakhir">Kirim Nilai Akhir</a></li>
