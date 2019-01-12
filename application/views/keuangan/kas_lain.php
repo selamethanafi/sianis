@@ -14,36 +14,16 @@ else
 }
 if((!empty($tahun)) and (!empty($bulan)) and (!empty($sumber)))
 {
-	if($sumber == '1')
+	$bulane = $bulan;
+	if($bulan<10)
 	{
-	$sumbere = 'Syahriyah';
-	?>
-	<a href="<?php echo base_url();?>keuangan/kas"><h3 class="text-center">KAS DANA OPERASIONAL SYAHRIYAH</h3></a>
-	<?php
+		$bulane = '0'.$bulan;
 	}
-	elseif($sumber == '2')
+	$tb = $this->db->query("select * from `m_penerimaan` where `nomor`='$sumber'");
+	foreach($tb->result() as $b)
 	{
-	$sumbere = 'dpm';
-	?>
-	<a href="<?php echo base_url();?>keuangan/kas"><h3 class="text-center">KAS DANA OPERASIONAL DPM</h3></a>
-	<?php
-	}
-	elseif($sumber == '3')
-	{
-	$sumbere = 'infaq/jariyah';
-	?>
-	<a href="<?php echo base_url();?>keuangan/kas"><h3 class="text-center">KAS DANA OPERASIONAL INFAQ/JARIYAH</h3></a>
-	<?php
-	}
-	else
-	{
-		$tb = $this->db->query("select * from `m_penerimaan` where `nomor`='$sumber'");
-		foreach($tb->result() as $b)
-		{
-			echo '<a href="'.base_url().'keuangan/kas"><h3 class="text-center">KAS DANA '.strtoupper($b->macam_penerimaan).'</h3></a>';
-			$sumbere = $b->macam_penerimaan;
-		}
-
+		echo '<a href="'.base_url().'keuangan/kas"><h3 class="text-center">KAS DANA '.strtoupper($b->macam_penerimaan).'</h3></a>';
+		$sumbere = $b->macam_penerimaan;
 	}
 	?>
 	<p class="text-center">Bulan <?php echo gantibulan($bulan).' '.$tahun;?></p>
@@ -54,60 +34,12 @@ if((!empty($tahun)) and (!empty($bulan)) and (!empty($sumber)))
 		<?php
 		$jm = 0;
 		$nomor = 1;
-		if($bulan<10)
+		$ta = $this->db->query("select * from `penerimaan` where `tanggal` like '$tahun-$bulane%'");
+		foreach($ta->result() as $a)
 		{
-			$bulan = '0'.$bulan;
-		}
-		for($i=1;$i<32;$i++)
-		{
-			if($i<10)
-			{
-				$tanggal = $tahun.'-'.$bulan.'-0'.$i;
-			}
-			else
-			{
-				$tanggal = $tahun.'-'.$bulan.'-'.$i;
-			}
-			$qm = $this->Keuangan_model->Kas_Masuk($tanggal,$sumbere);
-			if($qm->num_rows()>0)
-			{
-				$besar = 0;
-				foreach($qm->result() as $m)
-				{
-					$besar = $besar + $m->besar;
-				}
-				$jm = $jm + $besar;
-				if($sumber == 1)
-				{	
-				echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($tanggal).'</td><td>Diterima Pembayaran Syahriyah</td><td align="right">'.number_format($besar).'</td></tr>';
-				}
-				elseif($sumber == 2)
-				{
-				echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($tanggal).'</td><td>Diterima Pembayaran DPM</td><td align="right">'.number_format($besar).'</td></tr>';
-				}
-				else
-				{
-				echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($tanggal).'</td><td>Diterima infaq / syahriyah</td><td align="right">'.number_format($besar).'</td></tr>';
-
-				}
-
-				$nomor++;
-			}
-			$qpl = $this->Keuangan_model->Kas_Penerimaan($tanggal,$sumbere);
-			if($qpl->num_rows()>0)
-			{
-				$besar = 0;
-				foreach($qpl->result() as $l)
-				{
-					$besar = $l->besar;
-					$jm = $jm + $besar;
-					echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($tanggal).'</td><td>'.$l->keterangan.'</td><td align="right">'.number_format($besar).'</td></tr>';
-
-				}
-
-				$nomor++;
-			}
-
+			echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($a->tanggal).'</td><td>'.$sumbere.'</td><td align="right">'.number_format($a->besar).'</td></tr>';
+			$jm = $jm + $a->besar;
+		$nomor++;
 		}
 		echo '<tr bgcolor="#fff"><td colspan="3" align="right">Jumlah</td><td align="right">'.number_format($jm).'</td></tr>';
 
@@ -120,12 +52,6 @@ if((!empty($tahun)) and (!empty($bulan)) and (!empty($sumber)))
 		<?php
 		$nomor = 1;
 		$jk = 0;
-		foreach($qk->result() as $k)
-		{
-			echo '<tr bgcolor="#fff"><td align="center">'.$nomor.'</td><td align="center">'.tanggal($k->tanggal).'</td><td>'.$k->keterangan.'</td><td align="right">'.number_format($k->besar).'</td></tr>';
-			$nomor++;
-			$jk = $jk + $k->besar;
-		}
 		echo '<tr bgcolor="#fff"><td colspan="3" align="right">Jumlah</td><td align="right">'.number_format($jk).'</td></tr>';
 
 		?>

@@ -54,23 +54,46 @@ if (empty($id))
 }
 else
 {
-	$ta = $this->db->query("select * from `m_penerimaan` where `id`='$id'");
-	if($ta->num_rows() > 0)
+	$tb = $this->db->query("select * from `penerimaan` where `id`='$id'");
+	if($tb->num_rows() > 0)
 	{
-		//mode ubah
-		foreach($ta->result() as $a)
+		foreach($tb->result() as $b)
 		{
-		?>
-		<div class="form-group row"><div class="col-sm-3"><label class="control-label">Nama penerimaan</label></div><div class="col-sm-9"><input name="macam_penerimaan" class="form-control" type="text" value="<?php echo $a->macam_penerimaan;?>" required></div></div>
-		<p class="text-center"><input type="submit" value="Perbarui Macam Penerimaan" class="btn btn-primary"></p>
-	<?php
+			$nomor = $b->id_m_penerimaan;
+			$tanggal = tanggal($b->tanggal);
+			$besar = $b->besar;
 		}
+		$ta = $this->db->query("select * from `m_penerimaan` where `nomor`='$nomor'");
+		echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Nama penerimaan</label></div><div class="col-sm-9"><select name="id_m_penerimaan" class="form-control">';
+			//mode ubah
+			foreach($ta->result() as $a)
+			{
+			?>
+			<option value="<?php echo $a->nomor;?>"><?php echo $a->macam_penerimaan;?></option>
+			<?php
+			}
+			$tc = $this->db->query("select * from `m_penerimaan` order by `macam_penerimaan`");
+			foreach($tc->result() as $c)
+			{
+				echo '<option value="'.$c->nomor.'">'.$c->macam_penerimaan.'</option>';
+			}
+	
+			echo '</select>
+
+			</div></div>
+			<div class="form-group row"><div class="col-sm-3"><label class="control-label">Tanggal</label></div>
+			<div class="col-sm-9" >
+			<input type="text" name="tanggal" value="'.$tanggal.'" id="tanggal" class="form-control">
+		</div></div>
+
+<div class="form-group row"><div class="col-sm-3"><label class="control-label">Besar penerimaan</label></div><div class="col-sm-9"><input name="besar" class="form-control" type="text" id="rupiah" value="'.$besar.'" required></div></div>
+		<p class="text-center"><input type="submit" value="Perbarui Penerimaan" class="btn btn-primary"></p>';
 	}
 	else
 	{
-		echo '<div class="alert alert-danger">data utama macam penerimaaan tidak ditemukan</div>';
+			echo '<div class="alert alert-danger">data tidak ditemukan</div>';
 	}
-}
+}	
 ?>
 </form>
 <table class="table table-striped table-hover table-bordered">
@@ -82,7 +105,7 @@ foreach($query->result() as $b)
 {
 	$id = $b->id_m_penerimaan;
 	$macam = '?';
-	$ta = $this->db->query("select * from `m_penerimaan` where `id`='$id'");
+	$ta = $this->db->query("select * from `m_penerimaan` where `nomor`='$id'");
 	foreach($ta->result() as $a)
 	{
 		$macam = $a->macam_penerimaan;
