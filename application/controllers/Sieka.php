@@ -311,11 +311,12 @@ class Sieka extends CI_Controller
 				endforeach;
 				unlink($filePath);
 				$datay['modul'] = 'Unggah ID Kegiatan Bulanan';
+				$data["judulhalaman"]= 'Unggah ID Kegiatan Bulanan';
 				$datay['tautan_balik'] = ''.base_url().'sieka/funggahkodebulanan';
 				$datay['pesan'] = $pesan;
 				if($adagalat==1)
 				{
-					$this->load->view('guru/bg_head',$data);
+					$this->load->view('guru/bg_atas',$data);
 					$this->load->view('guru/adagalat',$datay);
 					$this->load->view('shared/bawah',$data);
 				}

@@ -902,9 +902,16 @@ class Keuangan extends CI_Controller {
 			$data['lokasi'] = $this->Referensi_model->ambil_nilai('lokasi');
 			$data['bendahara_komite'] = $this->Referensi_model->ambil_nilai('bendahara_komite');
 			$data['qk'] = $this->Keuangan_model->Kas_Keluar($tahun,$bulan,$sumbere);
-			
 			$this->load->view('shared/bg_atas_cetak_komite_landscape',$data);
-			$this->load->view('keuangan/kas',$data);
+			if($sumber<4)
+			{
+				$this->load->view('keuangan/kas',$data);
+			}
+			else
+			{
+				$this->load->view('keuangan/kas_lain',$data);
+			}
+
 
 		}
 		else
