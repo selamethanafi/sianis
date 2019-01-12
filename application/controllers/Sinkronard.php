@@ -1066,6 +1066,121 @@ class Sinkronard extends CI_Controller
 		$this->load->view('sinkronard/walikelas',$data_isi);
 		$this->load->view('shared/bawah');
 	}
+	function formdeskripsi($tahun1=null,$semester=null,$category_level_id=null, $category_majors_id=null,$category_subjects_id=null,$id_mapel=null)
+	{
+		$data = array();
+		$data["nim"]='';
+		$data['loncat'] = '';
+		$data['judulhalaman'] = 'Unggah Deskripsi';
+		$data['category_level_id'] = $category_level_id;
+		$data['category_majors_id'] = $category_majors_id;
+		$data['category_subjects_id'] = $category_subjects_id;
+		$data['id_mapel'] = $id_mapel;
+		$data['tahun1'] = $tahun1;
+		$data['semester'] = $semester;
+		$this->load->model('Guru_model', 'guru');
+		$data['url_ard_unduh'] = $this->ref->ambil_nilai('url_ard_unduh');
+		$this->load->view('admin/bg_head',$data);
+		$this->load->view('sinkronard/form_unggah_deskripsi',$data);
+		$this->load->view('shared/bawah');
+	}
+	function prosesunggahdeskripsi($id_mapel=null)
+	{
+		$data["nim"]=$this->session->userdata('username');
+		$data["judulhalaman"]= 'Proses Unggah Nilai';
+		$this->load->library('csvimport');
+		$config['upload_path'] = 'uploads';
+		$config['allowed_types'] ='csv';
+		$config['overwrite'] = TRUE;	
+		$config['file_name'] = 'deskripsi_nilai_siswa.csv';
+		$this->load->library('upload', $config);
+		$tmapel = $this->db->query("select * from `m_mapel` where `id_mapel`='$id_mapel'");
+		if($tmapel->num_rows() == 0)
+		{
+			redirect('admin/mapel_tidak_ada');
+		}
+		foreach($tmapel->result() as $dtmapel)
+		{
+				$thnajaran = $dtmapel->thnajaran;
+				$semester = $dtmapel->semester;
+		}
+		$mapel=nopetik($this->input->post('mapel'));
+		$subjects_value=nopetik($this->input->post('subjects_value_id'));
+		$this->db->query("update `m_mapel` set `subjects_value`='$subjects_value' where `id_mapel`='$id_mapel'");
+		if(!empty($_FILES['userfile']['name']))
+		{
+			if(!$this->upload->do_upload())
+			{
+			 	echo $this->upload->display_errors();
+			}
+			else 
+			{
+				$filePath = 'uploads/nilai_siswa.csv';
+				$csvData = $this->csvimport->get_array($filePath);	
+				$adagalat = 0;
+				$pesan = '';
+				$n=0;
+				foreach($csvData as $field):
+					$baris = $n+1;
+					$pesan .= 'Baris '.$baris.' Kolom';
+					if(isset($field['nis']))
+					{
+						$nis = nopetik($field['nis']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' nis';
+						$nis = '';
+					}
+					if(isset($field['deskripsi_pengetahuan']))
+					{
+						$keterangan = nopetik($field['deskripsi_pengetahuan']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' deskripsi_pengetahuan';
+						$keterangan = '';
+					}
+					if(isset($field['deskripsi_keterampilan']))
+					{
+						$deskripsi = nopetik($field['deskripsi_keterampilan']);
+					}
+					else
+					{
+						$adagalat = 1;
+						$pesan .= ' deskripsi_keterampilan';
+						$deskripsi = '';
+					}
+					if ($adagalat==0)
+					{
+						$this->db->query("update `nilai` set `deskripsi`='$deskripsi', `keterangan`='$keterangan' where `thnajaran`='$thnajaran' and `semester`='$semester' and `nis`='$nis' and `mapel`='$mapel'");
+					}
+					$pesan .= ' TIDAK ADA<br />';
+					$n++;
+				endforeach;
+				unlink($filePath);
+				$datay['modul'] = 'Impor Status Siswa';
+				$datay['tautan_balik'] = ''.base_url().'sinkronard/formnilai';
+				$datay['pesan'] = $pesan;
+				if($adagalat>0)
+				{
+					$this->load->view('admin/bg_head',$data);
+					$this->load->view('guru/adagalat',$datay);
+					$this->load->view('shared/bawah',$data);
+				}
+				else
+				{
+					redirect('sinkronard/formnilai');
+				}
+			} //akhir kalau tidak error upload
+		} // akhir kalau ada file terkirim
+		else
+		{
+			redirect('admin');
+		}
+	}//kalau tatausaha
 
 /* akhir controller */
 }
