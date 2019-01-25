@@ -30,46 +30,59 @@ if(empty($nomor))
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('nohpadmin','Nomor Ponsel Admin')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Nomor Ponsel Admin' where `opsi`='nohpadmin'");
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'nohpbp'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('nohpbp','Nomor Seluler BK')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Nomor Seluler BK' where `opsi`='nohpbp'");
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'nohpkesiswaan'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('nohpkesiswaan','Nomor Seluler Waka Kesiswaan')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Nomor Seluler Waka Kesiswaan' where `opsi`='nohpkesiswaan'");
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'baris_1_identitas_sekolah_2015'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('baris_1_identitas_sekolah_2015','Baris Pertama Judul Sampul Rapor Kurikulum 2015')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Baris pertama judul sampul rapor kurikulum 2015' where `opsi`='baris_1_identitas_sekolah_2015'");
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'baris_2_identitas_sekolah_2015'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('baris_2_identitas_sekolah_2015','Baris kedua judul sampul rapor kurikulum 2015')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Baris kedua judul sampul rapor kurikulum 2015' where `opsi`='baris_2_identitas_sekolah_2015'");
+
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'baris_1_identitas_sekolah_2013'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('baris_1_identitas_sekolah_2013','Baris pertama judul sampul rapor kurikulum 2013')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Baris pertama judul sampul rapor kurikulum 2013' where `opsi`='baris_1_identitas_sekolah_2013'");
+
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'baris_2_identitas_sekolah_2013'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('baris_2_identitas_sekolah_2013','Baris kedua judul sampul rapor kurikulum 2013')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Baris kedua judul sampul rapor kurikulum 2013' where `opsi`='baris_2_identitas_sekolah_2013'");
+
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'chat_id_admin_skp'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('chat_id_admin_skp','ID chat telegram admin SKP')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='ID chat telegram admin SKP' where `opsi`='chat_id_admin_skp'");
+
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'token_bot'");
 	if($tb->num_rows() == 0)
 	{
 		$this->db->query("insert into `m_referensi` (`opsi`, `keterangan`) values ('token_bot','Token Bot Telegram')");
 	}
+	$this->db->query("update `m_referensi` set `keterangan` ='Token Bot Telegram' where `opsi`='token_bot'");
 	$tb = $this->db->query("select * from `m_referensi` where `opsi` = 'jenjang'");
 	if($tb->num_rows() == 0)
 	{
