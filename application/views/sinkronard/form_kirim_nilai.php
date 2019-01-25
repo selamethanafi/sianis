@@ -94,10 +94,19 @@ if(!empty($id_mapel))
 	{
 		echo 'school_class_id '.$school_class_id;
 		echo '<br />subjects_value '.$subjects_value;
+		if($base_url == 'http:')
+		{
 		?>
 		<iframe src="<?php echo base_url().'sinkronard/fkirimnilaiharian/'.$id_mapel;?>" width="100%" height="400"></iframe>
 		<?php
 		echo '<p>Kalau gagal mengunduh mungkin perlu -&gt; <a href="'.base_url().'sinkronard/form_input_nilai_harian2/'.$id_mapel.'" class="btn btn-info"><span class="fa fa-servers"></span>   <b>Buat Daftar Nilai di ARD</b></a></p>';
+
+		}
+		else
+		{?>
+			<a href="javascript:;"  onClick="window.open('<?php echo base_url();?>sinkronard/fkirimnilaiharian/<?php echo $id_mapel;?>','yes','scrollbars=yes,width=1024,height=600')" class="btn btn-success"><strong>Kirim ke ARD</strong></a>
+			<?php
+		}
 	}
 }
 echo '</div></div></div>';

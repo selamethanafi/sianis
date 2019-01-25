@@ -93,8 +93,8 @@ Kode Kelas ARD <?php echo $school_class_id;?> Kode Mapel ARD <?php echo $subject
 	echo '<td><strong>KKM</strong></td><td><strong>RPH</strong></td><td><strong>PAS</strong></td><td><strong>Nilai<br />Pengetahuan</strong></td><td><strong>Predikat</strong></td><td><strong>Praktik</strong></td><td><strong>Portofolio</strong></td><td><strong>Proyek</strong></td><td><strong>Nilai<br />Keterampilan</strong></td><td><strong>Predikat</strong></td></tr></thead>';
 	echo '<tr><td>'.$namasiswa.'</td><td><p class="text-danger">'.$kkm.'</p></td>';
 			echo '<td>'.$value_daily.'</td><td>'.$value_final.'</td><td>'.$value_knowledge_total.'</td><td><p class="text-danger">'.$value_knowledge_predicate.'</p></td><td>'.$value_practice.'</td><td>'.$value_portfolio.'</td><td><strong>'.$value_project.'</strong></td><td>'.$value_skill_total.'</td><td><p class="text-danger">'.$value_skill_predicate.'</p></td></tr>';
-			echo '<tr><td colspan="10">'.$value_knowledge_description.'</td></tr>';
-			echo '<tr><td colspan="10">'.$value_skill_description.'</td></tr>';
+			echo '<tr><td colspan="11">'.$value_knowledge_description.'</td></tr>';
+			echo '<tr><td colspan="11">'.$value_skill_description.'</td></tr>';
 	echo '</table></div>';
 	}
 	else

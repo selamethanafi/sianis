@@ -31,6 +31,8 @@ if($cacahsiswa > 0)
 		$mapel = $b->mapel;
 		$kelas = $b->kelas;
 		$subjects_value = $b->subjects_value;
+		$thnajaran = $b->thnajaran;
+		$semester = $b->semester;
 	}
 	echo $mapel.' '.$kelas.'<br />subjects_value '.$subjects_value;
 	$ta = $this->db->query("select * from `m_walikelas` where `thnajaran`='$thnajaran' and `semester`='$semester' and `kelas`='$kelas'");
@@ -40,7 +42,7 @@ if($cacahsiswa > 0)
 		$school_class_id = $a->kode_rombel;
 	}
 	echo '<br />school_class_id '.$school_class_id;
-	echo '<p><a href="'.base_url().'sinkronard/kirimnilaiharian/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-upload"></span>   <b>Kirim Nilai Harian ke ARD</b></a></p>';
+	echo '<p><a href="'.base_url().'sinkronard/kirimnilaiharian/'.substr($thnajaran,0,4).'/'.$semester.'/'.$id_mapel.'" class="btn btn-primary"><span class="fa fa-upload"></span>   <b>Kirim Nilai Harian ke ARD</b></a></p>';
 	if((!empty($school_class_id)) and (!empty($subjects_value)))
 	{
 	?>

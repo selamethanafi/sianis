@@ -64,10 +64,10 @@ if(!empty($category_level_id))
 
 	echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Tingkat</label></div><div class="col-sm-9">';
 	echo "<select name=\"category_level_id\" onChange=\"MM_jumpMenu('self',this,0)\" class=\"form-control\">";
-	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$category_level_id.'">'.$category_level_id.'</option>';
-	echo '<option value="'.$xloc.'/'.$tahun1.'/10">10</option>';
-	echo '<option value="'.$xloc.'/'.$tahun1.'/11">11</option>';
-	echo '<option value="'.$xloc.'/'.$tahun1.'/12">12</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'">'.$category_level_id.'</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/10">10</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/11">11</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/12">12</option>';
 	echo '</select></div></div>';
 }
 if(!empty($category_majors_id))
@@ -76,22 +76,22 @@ if(!empty($category_majors_id))
 	echo "<select name=\"category_majors_id\" onChange=\"MM_jumpMenu('self',this,0)\" class=\"form-control\">";
 	if($category_majors_id == 1)
 	{
-		echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' IPA</option>';
+		echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' IPA</option>';
 	}
 	elseif($category_majors_id == 2)
-	{	echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' IPS</option>';}
+	{	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' IPS</option>';}
 	elseif($category_majors_id == 3)
-	{	echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' BAHASA</option>';
+	{	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' BAHASA</option>';
 	}
 	elseif($category_majors_id == 4)
-	{	echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' KEAGAMAAN</option>';}
+	{	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' KEAGAMAAN</option>';}
 	else
-	{	echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' JURUSAN TIDAK JELAS</option>';
+	{	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'">'.$category_majors_id.' JURUSAN TIDAK JELAS</option>';
 	}
-	echo '<option value="'.$xloc.'/'.$category_level_id.'/1">1 IPA</option>';
-	echo '<option value="'.$xloc.'/'.$category_level_id.'/2">2 IPS</option>';
-	echo '<option value="'.$xloc.'/'.$category_level_id.'/3">3 BAHASA</option>';
-	echo '<option value="'.$xloc.'/'.$category_level_id.'/4">4 KEAGAMAAN</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/1">1 IPA</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/2">2 IPS</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/3">3 BAHASA</option>';
+	echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/4">4 KEAGAMAAN</option>';
 	echo '</select></div></div>';
 }
 if(!empty($category_subjects_id))
@@ -102,17 +102,15 @@ if(!empty($category_subjects_id))
 		$mysqld = koneksi_mysql($url_ard_unduh);
 		if($mysqld == 'ada')
 		{
-			$file = file_get_contents($url_ard_unduh.'/api/subject_id_balik.php?category_subjects_id='.$category_subjects_id);
-			$json = json_decode($file, true);
+			$json = via_curl($url_ard_unduh.'/api/subject_id_balik.php?category_subjects_id='.$category_subjects_id);
 			echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Mata Pelajaran ARD</label></div><div class="col-sm-9">';
 			echo "<select name=\"category_subjects_id\" onChange=\"MM_jumpMenu('self',this,0)\" class=\"form-control\">";
 			foreach($json as $data)
 			{
-				echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'/'.$category_subjects_id.'">'.$data['category_subjects_name_group'].'</option>';
+				echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'/'.$category_subjects_id.'">'.$data['category_subjects_name_group'].'</option>';
 			}
 			echo '</select></div></div>';
-			$file = file_get_contents($url_ard_unduh.'/api/category_subjects_id.php?category_subjects_id='.$category_subjects_id);
-			$json = json_decode($file, true);
+			$json = via_curl($url_ard_unduh.'/api/category_subjects_id.php?category_subjects_id='.$category_subjects_id);
 			foreach($json as $data)
 			{
 				$subjects_value_id = $data['subjects_value_id'];
@@ -125,7 +123,7 @@ if(!empty($category_subjects_id))
 	}
 	else
 	{
-		echo '<h4 class="text-danger">Tidak terhubung ke server ARD '.$url_ard_unduh.'</h4>';
+		echo '<h4 class="text-danger">Tidak terhubung ke server ARD sss'.$url_ard_unduh.'</h4>';
 	}
 }
 
@@ -138,7 +136,7 @@ if(!empty($id_mapel))
 		$mapele = $a->mapel;
 		echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Mata Pelajaran</label></div><div class="col-sm-9">';
 		echo "<select name=\"id_mapel\" onChange=\"MM_jumpMenu('self',this,0)\" class=\"form-control\">";
-		echo '<option value="'.$xloc.'/'.$category_level_id.'/'.$category_majors_id.'/'.$category_subjects_id.'/'.$id_mapel.'">'.$mapele.' '.$kelase.'</option>';
+		echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'/'.$category_subjects_id.'/'.$id_mapel.'">'.$mapele.' '.$kelase.'</option>';
 		echo '</select></div></div>';
 	}
 }
@@ -192,8 +190,7 @@ elseif(empty($category_subjects_id))
 		$mysqld = koneksi_mysql($url_ard_unduh);
 		if($mysqld == 'ada')
 		{
-			$file = file_get_contents($url_ard_unduh.'/api/subject_id.php?category_majors_id='.$category_majors_id.'&category_level_id='.$category_level_id);
-			$json = json_decode($file, true);
+			$json = via_curl($url_ard_unduh.'/api/subject_id.php?category_majors_id='.$category_majors_id.'&category_level_id='.$category_level_id);
 			echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Mata Pelajaran ARD</label></div><div class="col-sm-9">';
 			echo "<select name=\"category_subjects_id\" onChange=\"MM_jumpMenu('self',this,0)\" class=\"form-control\">";
 			echo '<option value="'.$xloc.'/'.$tahun1.'/'.$semester.'/'.$category_level_id.'/'.$category_majors_id.'/"></option>';
