@@ -65,8 +65,7 @@ if(count($query->result())>0)
 		foreach($tb->result() as $b)
 		{
 			$student_id = $b->id_ard_siswa;
-			$file = file_get_contents($url_ard_unduh.'/api/nilai.php?subjects_value_id='.$subjects_value.'&student_id='.$student_id);
-			$json = json_decode($file, true);
+			$json = via_curl($url_ard_unduh.'/api/nilai.php?subjects_value_id='.$subjects_value.'&student_id='.$student_id);
 			$student_subjects_value_id = $json[0]['student_subjects_value_id'];
 			if($student_subjects_value_id != 'tidak ada data')
 			{
