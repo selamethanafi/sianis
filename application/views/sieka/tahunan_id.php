@@ -28,7 +28,7 @@ if($adatb>0)
 	echo form_open('sieka/simpantahunanid/'.$id,'class="form-horizontal" role="form"');
 	foreach($tb->result() as $b)
 	{
-		if ((strpos($b->kegiatan, 'Melaksanakan Proses Pembelajaran') !== false) or (strpos($b->kegiatan,'Membimbing siswa dalam kegiatan ekstrakurikuler') !== false))
+		if ((strpos($b->kegiatan, 'Melaksanakan Proses Pembelajaran') !== false) or (strpos($b->kegiatan,'Membimbing siswa dalam kegiatan ekstrakurikuler') !== false)  or (strpos($b->kegiatan,'Wali kelas') !== false))
 		{
 			echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kegiatan</label></div><div class="col-sm-9"><p class="form-control-static">'.$b->kegiatan.'</p></div></div>';
 		echo '<div class="form-group row"><div class="col-sm-3"><label class="control-label">Kode Klasifikasi Tahunan</label></div><div class="col-sm-9"><input type="text" name="id_tahunan"  value="'.$b->id_tahunan.'" class="form-control"></div></div>';
