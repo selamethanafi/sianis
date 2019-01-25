@@ -23,9 +23,9 @@ class Sinkronard extends CI_Controller
 		$this->load->helper(array('form','url', 'text_helper','date','fungsi'));
 		$this->load->database();
 		$this->load->library('image_lib');
+		$tanda = $this->session->userdata('tanda');
 		$this->load->model('Ard_model', 'ard');	
 		$this->load->model('Referensi_model','ref');	
-		$tanda = $this->session->userdata('tanda');
 		if($tanda!="")
 		{
 			if($tanda !="admin")
@@ -37,7 +37,6 @@ class Sinkronard extends CI_Controller
 		{
 			redirect('login');
 		}
-
 	}
 	function index()
 	{
@@ -50,7 +49,7 @@ class Sinkronard extends CI_Controller
 		$this->load->view('shared/bawah');
 
 	}
-	function formnilai($tahun1=null,$semester=null,$category_level_id=null, $category_majors_id=null,$category_subjects_id=null,$id_mapel=null)
+		function formnilai($tahun1=null,$semester=null,$category_level_id=null, $category_majors_id=null,$category_subjects_id=null,$id_mapel=null)
 	{
 		$data = array();
 		$data["nim"]='';
@@ -745,6 +744,7 @@ class Sinkronard extends CI_Controller
 		$data['id_mapel'] = $id_mapel;
 		$data['tahun1'] = $tahun1;
 		$data['semester'] = $semester;
+		$data['base_url'] = substr(base_url(),0,5);
 //		$data['url_ard'] = $this->ref->ambil_nilai('url_ard');
 		$this->load->view('admin/bg_head',$data);
 		$this->load->view('sinkronard/form_kirim_nilai',$data);
@@ -815,6 +815,7 @@ class Sinkronard extends CI_Controller
 				$data['url_ard'] = $this->ref->ambil_nilai('url_ard');
 				$data['subjects_value'] = $subjects_value;
 				$this->load->view('admin/bg_head',$data);
+				$data['base_url'] = substr(base_url(),0,5);
 				$this->load->view('sinkronard/kirim_daftar_nilai_akhir_ke_ard',$data);
 				$this->load->view('shared/bawah');
 			}
@@ -826,6 +827,7 @@ class Sinkronard extends CI_Controller
 		else
 		{
 			$this->load->view('admin/bg_head',$data);
+			$data['base_url'] = substr(base_url(),0,5);
 			$this->load->view('sinkronard/kirim_daftar_nilai_akhir_ke_ard',$data);
 			$this->load->view('shared/bawah');
 
@@ -1115,7 +1117,8 @@ class Sinkronard extends CI_Controller
 			}
 			else 
 			{
-				$filePath = 'uploads/nilai_siswa.csv';
+				setlocale(LC_ALL, 'ar_AE.utf8');
+				$filePath = 'uploads/deskripsi_nilai_siswa.csv';
 				$csvData = $this->csvimport->get_array($filePath);	
 				$adagalat = 0;
 				$pesan = '';
@@ -1145,7 +1148,7 @@ class Sinkronard extends CI_Controller
 					}
 					if(isset($field['deskripsi_keterampilan']))
 					{
-						$deskripsi = nopetik($field['deskripsi_keterampilan']);
+						$deskripsi = utf8_encode(nopetik($field['deskripsi_keterampilan']));
 					}
 					else
 					{
@@ -1172,7 +1175,7 @@ class Sinkronard extends CI_Controller
 				}
 				else
 				{
-					redirect('sinkronard/formnilai');
+					redirect('sinkronard/formdeskripsi');
 				}
 			} //akhir kalau tidak error upload
 		} // akhir kalau ada file terkirim
@@ -1184,4 +1187,4 @@ class Sinkronard extends CI_Controller
 
 /* akhir controller */
 }
-?> 
+?>
