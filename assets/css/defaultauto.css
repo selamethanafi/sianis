@@ -1,0 +1,21 @@
+body {
+	font-family: verdana,arial,sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+.wrap { 
+	width:50%; 
+	background:#F0F0F0; 
+	margin:auto;
+	padding: 25px;
+	overflow: hidden;
+}
+
+h1 {
+	text-align: center;
+}
+
+input, textarea {
+    border: 1px solid #CCC;
+}
